@@ -7,9 +7,18 @@
 using namespace std;
 
 
+long long MostDigs = 0;
 
 
-int sum_digits(string digits)
+long long number_sum(long long myeighteen)
+{
+	if (myeighteen < 10)
+		return myeighteen;
+
+	return (myeighteen % 10) + number_sum(myeighteen / 10);
+}
+
+long long sum_digits(string digits)
 {
 	//First attempt, but integral types are too small
 	//if (digits.size() == 1)
@@ -17,13 +26,22 @@ int sum_digits(string digits)
 
 	//return (digits % 10 + sum_digits(digits / 10));
 
-	if (digits.size() == 1)
+	//Causes a stack overflow before the limits of the problem
+	/*if (digits.size() == 1)
 		return stoi(digits);
 
-	int back_digit = atoi(&digits.back());
-	digits.pop_back();
+	long long back_digit = atoi(&digits.back());
+	digits.pop_back();*/
 
-	return back_digit + sum_digits(digits);
+
+	//Two possible solutions. Cut back 18 or so digits off and use long long, then recurse on that...maybe not actually better
+	//Solution two, split it into two even strings , doing logrithmic recursive calls at once
+
+	if (digits.size() < MostDigs)
+		return number_sum(stoll(digits));
+	
+
+	return sum_digits(digits.substr(0, digits.size()/2)) + sum_digits(digits.substr(digits.size()/2, digits.size()));
 
 }
 
@@ -34,12 +52,13 @@ string super_digit(string input)
 	if (input.size() == 1)
 		return input;
 
+	long long sum = sum_digits(input);
 
-	return super_digit(to_string(sum_digits(input)));
+	return super_digit(to_string(sum));
 
 }
 
-long howmanydigits(long num)
+long long howmanydigits(long long num)
 {
 	if (num < 10)
 		return 1;
@@ -63,7 +82,8 @@ int main() {
 	long k, n;
 	cin >> n >> k;
 
-	long numdigitsn = howmanydigits(n);
+	MostDigs = howmanydigits(LLONG_MAX);
+	MostDigs--;
 	//It must be a string since long is not big enough to hold 10^10000
 	string mydigit = buildnum(n, k);
 
