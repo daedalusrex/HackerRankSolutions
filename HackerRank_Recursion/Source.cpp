@@ -3,23 +3,39 @@
 #include <vector>
 #include <iostream>
 #include <algorithm>
+#include <string>
 using namespace std;
 
-long sum_digits(long digits)
-{
-	if (digits<10)
-		return digits;
 
-	return (digits % 10 + sum_digits(digits / 10));
+
+
+int sum_digits(string digits)
+{
+	//First attempt, but integral types are too small
+	//if (digits.size() == 1)
+	//	return digits;
+
+	//return (digits % 10 + sum_digits(digits / 10));
+
+	if (digits.size() == 1)
+		return stoi(digits);
+
+	int back_digit = atoi(&digits.back());
+	digits.pop_back();
+
+	return back_digit + sum_digits(digits);
+
 }
 
 
-long super_digit(long input)
-{
-	if (input < 10)
-		return (int)input;
 
-	return super_digit(sum_digits(input));
+string super_digit(string input)
+{
+	if (input.size() == 1)
+		return input;
+
+
+	return super_digit(to_string(sum_digits(input)));
 
 }
 
@@ -31,12 +47,12 @@ long howmanydigits(long num)
 	return 1 + howmanydigits(num / 10);
 }
 
-long buildnum(long n, long k, long digitsize)
+string buildnum(long n, long k)
 {
 	if (k == 1)
-		return n;
+		return to_string(n);
 
-	return n + buildnum(pow(10,digitsize) * n, k - 1, digitsize);
+	return to_string(n) + buildnum(n, k - 1);
 }
 
 
@@ -48,7 +64,8 @@ int main() {
 	cin >> n >> k;
 
 	long numdigitsn = howmanydigits(n);
-	long mydigit = buildnum(n, k,numdigitsn);
+	//It must be a string since long is not big enough to hold 10^10000
+	string mydigit = buildnum(n, k);
 
 	cout << super_digit(mydigit);
 
