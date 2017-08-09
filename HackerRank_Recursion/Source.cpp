@@ -18,7 +18,7 @@ long long number_sum(long long myeighteen)
 	return (myeighteen % 10) + number_sum(myeighteen / 10);
 }
 
-long long sum_digits(string digits)
+long long sum_digits(string &digits)
 {
 	//First attempt, but integral types are too small
 	//if (digits.size() == 1)
@@ -85,11 +85,27 @@ string buildnum(string n, long k)
 	
 
 	string building;
+	unsigned long long total = 0;
+	
+	for (string::iterator it = n.begin(); it != n.end(); ++it++)
+	{
+		char m = *it;
+
+		total += stoll(&m) * k;
+		if (total > LLONG_MAX - 11)
+			building = "oh noooooo";
+	}
+
+	
+
+/*
 	while (k > 0)
 	{
 		building.append(n);
 		k--;
-	}
+	}*/
+
+	building = to_string(total);
 
 	return building;
 }
@@ -105,12 +121,12 @@ int main() {
 
 	MostDigs = howmanydigits(LLONG_MAX);
 	MostDigs--;
-	//It must be a string since long is not big enough to hold 10^10000
+	//It must be a string since long long is not big enough to hold 10^10000
 	string mydigit = buildnum(n, k);
 
 	cout << super_digit(mydigit);
 
-	cin >> k;
+	//cin >> k;
 
 	return 0;
 }
