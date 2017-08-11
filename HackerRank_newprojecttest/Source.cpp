@@ -17,7 +17,40 @@
 using namespace std;
 void partition(vector <int>  ar) {
 	// Enter code for partitioning and printing here. 
+
+	int part = ar[0];
+	int front = 0;
+	
+
+	vector<int> lesspart;
+	vector<int> equalpart;
+	vector<int> greaterpart;
+
+	while (front < ar.size())
+	{
+		if (ar[front] < part)
+			lesspart.push_back(ar[front]);
+
+		if (ar[front] == part)
+			equalpart.push_back(ar[front]);
+
+		if (ar[front] > part)
+			greaterpart.push_back(ar[front]);
+
+		front++;
+	}
+
+
+	for (vector<int>::iterator it = lesspart.begin(); it != lesspart.end(); ++it)
+		cout << *it << " ";
+
+	for (vector<int>::iterator it = equalpart.begin(); it != equalpart.end(); ++it)
+		cout << *it << " ";
+
+	for (vector<int>::iterator it = greaterpart.begin(); it != greaterpart.end(); ++it)
+		cout << *it << " ";
 }
+
 int main(void) {
 	vector <int>  _ar;
 	int _ar_size;
@@ -31,5 +64,7 @@ int main(void) {
 
 	partition(_ar);
 
+
+	cin >> _ar_size;
 	return 0;
 }
