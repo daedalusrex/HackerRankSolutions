@@ -5,7 +5,9 @@ VisualStudioVersion = 15.0.26430.16
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HackerRank_Recursion_SuperDigit", "HackerRank_Recursion\HackerRank_Recursion.vcxproj", "{C78D8DD0-E9F2-4E82-AC5E-D97A3CD28828}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HackerRank_newprojecttest", "HackerRank_newprojecttest\HackerRank_newprojecttest.vcxproj", "{EF6C544E-57FF-4F0D-AA28-30D376E0FA17}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HackerRank_Quicksort1", "HackerRank_newprojecttest\HackerRank_newprojecttest.vcxproj", "{EF6C544E-57FF-4F0D-AA28-30D376E0FA17}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Graph_Journey2TheMoon", "Graph_Journey2TheMoon\Graph_Journey2TheMoon.vcxproj", "{3E2DD870-EC41-47DF-9A5D-C2A19CD74068}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,6 +33,14 @@ Global
 		{EF6C544E-57FF-4F0D-AA28-30D376E0FA17}.Release|x64.Build.0 = Release|x64
 		{EF6C544E-57FF-4F0D-AA28-30D376E0FA17}.Release|x86.ActiveCfg = Release|Win32
 		{EF6C544E-57FF-4F0D-AA28-30D376E0FA17}.Release|x86.Build.0 = Release|Win32
+		{3E2DD870-EC41-47DF-9A5D-C2A19CD74068}.Debug|x64.ActiveCfg = Debug|x64
+		{3E2DD870-EC41-47DF-9A5D-C2A19CD74068}.Debug|x64.Build.0 = Debug|x64
+		{3E2DD870-EC41-47DF-9A5D-C2A19CD74068}.Debug|x86.ActiveCfg = Debug|Win32
+		{3E2DD870-EC41-47DF-9A5D-C2A19CD74068}.Debug|x86.Build.0 = Debug|Win32
+		{3E2DD870-EC41-47DF-9A5D-C2A19CD74068}.Release|x64.ActiveCfg = Release|x64
+		{3E2DD870-EC41-47DF-9A5D-C2A19CD74068}.Release|x64.Build.0 = Release|x64
+		{3E2DD870-EC41-47DF-9A5D-C2A19CD74068}.Release|x86.ActiveCfg = Release|Win32
+		{3E2DD870-EC41-47DF-9A5D-C2A19CD74068}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
