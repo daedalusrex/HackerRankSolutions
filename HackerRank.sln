@@ -11,6 +11,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Graph_Journey2TheMoon", "Gr
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GraphLevelLists", "GraphLevelLists\GraphLevelLists.vcxproj", "{715D3D5D-7946-47A3-A03B-0A350BAC450F}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LeftRotations", "LeftRotations\LeftRotations.vcxproj", "{3F5B4994-E80F-49FC-939B-F86899838EDE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -51,6 +53,14 @@ Global
 		{715D3D5D-7946-47A3-A03B-0A350BAC450F}.Release|x64.Build.0 = Release|x64
 		{715D3D5D-7946-47A3-A03B-0A350BAC450F}.Release|x86.ActiveCfg = Release|Win32
 		{715D3D5D-7946-47A3-A03B-0A350BAC450F}.Release|x86.Build.0 = Release|Win32
+		{3F5B4994-E80F-49FC-939B-F86899838EDE}.Debug|x64.ActiveCfg = Debug|x64
+		{3F5B4994-E80F-49FC-939B-F86899838EDE}.Debug|x64.Build.0 = Debug|x64
+		{3F5B4994-E80F-49FC-939B-F86899838EDE}.Debug|x86.ActiveCfg = Debug|Win32
+		{3F5B4994-E80F-49FC-939B-F86899838EDE}.Debug|x86.Build.0 = Debug|Win32
+		{3F5B4994-E80F-49FC-939B-F86899838EDE}.Release|x64.ActiveCfg = Release|x64
+		{3F5B4994-E80F-49FC-939B-F86899838EDE}.Release|x64.Build.0 = Release|x64
+		{3F5B4994-E80F-49FC-939B-F86899838EDE}.Release|x86.ActiveCfg = Release|Win32
+		{3F5B4994-E80F-49FC-939B-F86899838EDE}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
