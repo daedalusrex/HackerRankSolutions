@@ -50,3 +50,9 @@ bool has_cycle(Node* head) {
 	return false;
 
 }
+
+
+int main(void)
+{
+	return 0;
+}
