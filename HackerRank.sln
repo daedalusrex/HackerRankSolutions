@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.16
+VisualStudioVersion = 15.0.26730.10
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HackerRank_Recursion_SuperDigit", "HackerRank_Recursion\HackerRank_Recursion.vcxproj", "{C78D8DD0-E9F2-4E82-AC5E-D97A3CD28828}"
 EndProject
@@ -20,6 +20,8 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Gems_Question", "Gems_Question\Gems_Question.vcxproj", "{90C6327A-D880-47F3-A2B1-90CE0C9D393D}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BigSorting", "BigSorting\BigSorting.vcxproj", "{549AF33F-D044-4B80-9523-593F9EA57B79}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BFS_ShortestReach", "BFS_ShortestReach\BFS_ShortestReach.vcxproj", "{01DC3058-0FC1-42C3-BDBC-325AC6C95063}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -101,8 +103,19 @@ Global
 		{549AF33F-D044-4B80-9523-593F9EA57B79}.Release|x64.Build.0 = Release|x64
 		{549AF33F-D044-4B80-9523-593F9EA57B79}.Release|x86.ActiveCfg = Release|Win32
 		{549AF33F-D044-4B80-9523-593F9EA57B79}.Release|x86.Build.0 = Release|Win32
+		{01DC3058-0FC1-42C3-BDBC-325AC6C95063}.Debug|x64.ActiveCfg = Debug|x64
+		{01DC3058-0FC1-42C3-BDBC-325AC6C95063}.Debug|x64.Build.0 = Debug|x64
+		{01DC3058-0FC1-42C3-BDBC-325AC6C95063}.Debug|x86.ActiveCfg = Debug|Win32
+		{01DC3058-0FC1-42C3-BDBC-325AC6C95063}.Debug|x86.Build.0 = Debug|Win32
+		{01DC3058-0FC1-42C3-BDBC-325AC6C95063}.Release|x64.ActiveCfg = Release|x64
+		{01DC3058-0FC1-42C3-BDBC-325AC6C95063}.Release|x64.Build.0 = Release|x64
+		{01DC3058-0FC1-42C3-BDBC-325AC6C95063}.Release|x86.ActiveCfg = Release|Win32
+		{01DC3058-0FC1-42C3-BDBC-325AC6C95063}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {83856DFC-A4A1-4B20-BF63-DEB2ED417899}
 	EndGlobalSection
 EndGlobal
