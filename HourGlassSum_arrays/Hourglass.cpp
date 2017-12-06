@@ -23,6 +23,22 @@
 
 using namespace std;
 
+int Calculate_Hourglass(vector<vector<int>> &arr, int i, int j) {
+	int sum = arr[i][j]; 
+
+	//Top of Hour Glass
+	sum += arr[i - 1][j - 1];
+	sum += arr[i - 1][j];
+	sum += arr[i - 1][j + 1];
+
+	//Bottom of Hour Glass
+	sum += arr[i + 1][j - 1];
+	sum += arr[i + 1][j];
+	sum += arr[i + 1][j + 1];
+	
+	return sum;
+}
+
 
 int main() {
 	vector< vector<int> > arr(6, vector<int>(6));
@@ -31,5 +47,21 @@ int main() {
 			cin >> arr[arr_i][arr_j];
 		}
 	}
+
+
+	int max_sum = -100;
+
+	//Trick is to do the innter array calculations
+	for (int i = 1; i < 5; i++) {
+		for (int j = 1; j < 5; j++) {
+			int sum = Calculate_Hourglass(arr, i, j);
+			if (sum > max_sum)
+				max_sum = sum;
+
+		}
+	}
+
+	cout << max_sum << endl;
+		
 	return 0;
 }
