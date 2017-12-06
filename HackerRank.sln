@@ -23,6 +23,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BigSorting", "BigSorting\Bi
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BFS_ShortestReach", "BFS_ShortestReach\BFS_ShortestReach.vcxproj", "{01DC3058-0FC1-42C3-BDBC-325AC6C95063}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataStructures", "DataStructures", "{2729DDB8-38C0-4C25-8D6A-47C141D32DE7}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HourGlassSum_arrays", "HourGlassSum_arrays\HourGlassSum_arrays.vcxproj", "{9B45C21A-ACB1-4A20-A6B2-461987141F2F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -111,9 +115,20 @@ Global
 		{01DC3058-0FC1-42C3-BDBC-325AC6C95063}.Release|x64.Build.0 = Release|x64
 		{01DC3058-0FC1-42C3-BDBC-325AC6C95063}.Release|x86.ActiveCfg = Release|Win32
 		{01DC3058-0FC1-42C3-BDBC-325AC6C95063}.Release|x86.Build.0 = Release|Win32
+		{9B45C21A-ACB1-4A20-A6B2-461987141F2F}.Debug|x64.ActiveCfg = Debug|x64
+		{9B45C21A-ACB1-4A20-A6B2-461987141F2F}.Debug|x64.Build.0 = Debug|x64
+		{9B45C21A-ACB1-4A20-A6B2-461987141F2F}.Debug|x86.ActiveCfg = Debug|Win32
+		{9B45C21A-ACB1-4A20-A6B2-461987141F2F}.Debug|x86.Build.0 = Debug|Win32
+		{9B45C21A-ACB1-4A20-A6B2-461987141F2F}.Release|x64.ActiveCfg = Release|x64
+		{9B45C21A-ACB1-4A20-A6B2-461987141F2F}.Release|x64.Build.0 = Release|x64
+		{9B45C21A-ACB1-4A20-A6B2-461987141F2F}.Release|x86.ActiveCfg = Release|Win32
+		{9B45C21A-ACB1-4A20-A6B2-461987141F2F}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{9B45C21A-ACB1-4A20-A6B2-461987141F2F} = {2729DDB8-38C0-4C25-8D6A-47C141D32DE7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {83856DFC-A4A1-4B20-BF63-DEB2ED417899}
