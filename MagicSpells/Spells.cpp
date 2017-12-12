@@ -64,8 +64,35 @@ void counterspell(Spell *spell) {
 
 
 	/* Enter your code here */
+	//use dynmaic cast for type conversion, and then just default case it must be generic
+	Fireball* fire = dynamic_cast<*Fireball>(spell);
+	Frostbite* frost = dynamic_cast<*Frostbite>(spell);
+	Thunderstorm* thunder = dynamic_cast<*Thunderstorm>(spell);
+	Waterbolt* water = dynamic_cast<*Waterbolt>(spell);
+	
+
+	if (fire)
+		fire->revealFirepower;
+	if (frost)
+		frost->revealFrostpower;
+	if (thunder)
+		thunder->revealThunderpower;
+	if (water)
+		water->revealWaterpower;
+
+	if (!fire && !frost && !thunder && !water)
+	{
+		//decode which one is the best 
+
+		//If it is a generic spell, find a subsequence of letters that are contained in both the spell name and your
+		//	spell journal.Among all such subsequences, find and print the length of the longest one on a new line.
+
+		//AquaVitae is not, and when you compare it with AruTaVae in your spell journal, you get a sequence:
+		//		AuaVae
 
 
+		//huh, apears to be some kind of longest common subsequence not trivial at all.
+	}
 
 
 }
