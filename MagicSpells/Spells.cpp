@@ -102,15 +102,11 @@ void counterspell(Spell *spell) {
 
 				//new value = max of above and left
 				LCS_Mat[i][j] = max(LCS_Mat[i - 1][j], LCS_Mat[i][j - 1]);
-
-				//if chars match add one, don't forget to account for offset
-				if (spell->revealScrollName()[i - 1] == SpellJournal::journal[j - 1])
-					LCS_Mat[i][j]++;
 				
-				//boundary check
-				int longestpossible = min(i, j);
-
-				LCS_Mat[i][j] = min(longestpossible, LCS_Mat[i][j]);
+				//if chars match add one to LCS(Xs-1,Ys-1), don't forget to account for offset
+				if (spell->revealScrollName()[i - 1] == SpellJournal::journal[j - 1])
+					LCS_Mat[i][j]= LCS_Mat[i-1][j-1]+1;
+			
 			}
 
 		}
