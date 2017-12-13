@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <algorithm>
 using namespace std;
 
 class Spell {
@@ -60,41 +61,64 @@ public:
 };
 string SpellJournal::journal = "";
 
+
+
 void counterspell(Spell *spell) {
 
 
 	/* Enter your code here */
 	//use dynmaic cast for type conversion, and then just default case it must be generic
-	Fireball* fire = dynamic_cast<*Fireball>(spell);
-	Frostbite* frost = dynamic_cast<*Frostbite>(spell);
-	Thunderstorm* thunder = dynamic_cast<*Thunderstorm>(spell);
-	Waterbolt* water = dynamic_cast<*Waterbolt>(spell);
+	Fireball* fire = dynamic_cast<Fireball*>(spell);
+	Frostbite* frost = dynamic_cast<Frostbite*>(spell);
+	Thunderstorm* thunder = dynamic_cast<Thunderstorm*>(spell);
+	Waterbolt* water = dynamic_cast<Waterbolt*>(spell);
+	
 	
 
 	if (fire)
-		fire->revealFirepower;
+		fire->revealFirepower();
 	if (frost)
-		frost->revealFrostpower;
+		frost->revealFrostpower();
 	if (thunder)
-		thunder->revealThunderpower;
+		thunder->revealThunderpower();
 	if (water)
-		water->revealWaterpower;
+		water->revealWaterpower();
 
 	if (!fire && !frost && !thunder && !water)
 	{
-		//decode which one is the best 
+		//Dynamic programming required, needs to have a matrix of some kind, 
+		//do work over each iteration
 
-		//If it is a generic spell, find a subsequence of letters that are contained in both the spell name and your
-		//	spell journal.Among all such subsequences, find and print the length of the longest one on a new line.
+		//from size of each strings, plus a null character in each first row to make logic prettier
+		int rows = spell->revealScrollName().size() + 1;
+		int	cols = SpellJournal::journal.size() + 1;
+		
+			
+		vector<vector<int> > LCS_Mat(rows, vector<int>(cols,0));
+		//build matrix left to right
+		
+		for (int i = 1; i < rows; i++) {
+			for (int j = 1; j < cols; j++) {
 
-		//AquaVitae is not, and when you compare it with AruTaVae in your spell journal, you get a sequence:
-		//		AuaVae
+				//new value = max of above and left
+				LCS_Mat[i][j] = max(LCS_Mat[i - 1][j], LCS_Mat[i][j - 1]);
 
+				//if chars match add one, don't forget to account for offset
+				if (spell->revealScrollName()[i - 1] == SpellJournal::journal[j - 1])
+					LCS_Mat[i][j]++;
+				
+				//boundary check
+				int longestpossible = min(i, j);
 
-		//huh, apears to be some kind of longest common subsequence not trivial at all.
+				LCS_Mat[i][j] = min(longestpossible, LCS_Mat[i][j]);
+			}
+
+		}
+
+		//largest possible subsequence should always be at the end of matrix
+		cout << LCS_Mat[rows-1][cols-1] << endl;
+		
 	}
-
-
 }
 
 class Wizard {
