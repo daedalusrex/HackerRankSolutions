@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27130.0
+VisualStudioVersion = 15.0.27130.2003
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HackerRank_Recursion_SuperDigit", "HackerRank_Recursion\HackerRank_Recursion.vcxproj", "{C78D8DD0-E9F2-4E82-AC5E-D97A3CD28828}"
 EndProject
@@ -34,6 +34,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "C++ Track Projects", "C++ Track Projects", "{CA09D19A-DC86-4707-98FF-5DF86D381B73}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MagicSpells", "MagicSpells\MagicSpells.vcxproj", "{F9A604E5-D4FA-4938-980B-5D5C6258716A}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EqualStacks", "EqualStacks\EqualStacks.vcxproj", "{F8F99D9F-D538-4AC2-89FA-4073C332F266}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -155,6 +157,14 @@ Global
 		{F9A604E5-D4FA-4938-980B-5D5C6258716A}.Release|x64.Build.0 = Release|x64
 		{F9A604E5-D4FA-4938-980B-5D5C6258716A}.Release|x86.ActiveCfg = Release|Win32
 		{F9A604E5-D4FA-4938-980B-5D5C6258716A}.Release|x86.Build.0 = Release|Win32
+		{F8F99D9F-D538-4AC2-89FA-4073C332F266}.Debug|x64.ActiveCfg = Debug|x64
+		{F8F99D9F-D538-4AC2-89FA-4073C332F266}.Debug|x64.Build.0 = Debug|x64
+		{F8F99D9F-D538-4AC2-89FA-4073C332F266}.Debug|x86.ActiveCfg = Debug|Win32
+		{F8F99D9F-D538-4AC2-89FA-4073C332F266}.Debug|x86.Build.0 = Debug|Win32
+		{F8F99D9F-D538-4AC2-89FA-4073C332F266}.Release|x64.ActiveCfg = Release|x64
+		{F8F99D9F-D538-4AC2-89FA-4073C332F266}.Release|x64.Build.0 = Release|x64
+		{F8F99D9F-D538-4AC2-89FA-4073C332F266}.Release|x86.ActiveCfg = Release|Win32
+		{F8F99D9F-D538-4AC2-89FA-4073C332F266}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -164,6 +174,7 @@ Global
 		{20C388C6-3D4D-4F1C-8A86-2F9AB5A7997F} = {2729DDB8-38C0-4C25-8D6A-47C141D32DE7}
 		{5D8A399F-BDB2-46CC-961E-BF5EF45D483B} = {2729DDB8-38C0-4C25-8D6A-47C141D32DE7}
 		{F9A604E5-D4FA-4938-980B-5D5C6258716A} = {CA09D19A-DC86-4707-98FF-5DF86D381B73}
+		{F8F99D9F-D538-4AC2-89FA-4073C332F266} = {2729DDB8-38C0-4C25-8D6A-47C141D32DE7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {83856DFC-A4A1-4B20-BF63-DEB2ED417899}
