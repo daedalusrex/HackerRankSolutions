@@ -37,6 +37,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MagicSpells", "MagicSpells\
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EqualStacks", "EqualStacks\EqualStacks.vcxproj", "{F8F99D9F-D538-4AC2-89FA-4073C332F266}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CastleOnGrid", "CastleOnGrid\CastleOnGrid.vcxproj", "{526CF9E8-8C15-4E78-86FC-327637EA761B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -165,6 +167,14 @@ Global
 		{F8F99D9F-D538-4AC2-89FA-4073C332F266}.Release|x64.Build.0 = Release|x64
 		{F8F99D9F-D538-4AC2-89FA-4073C332F266}.Release|x86.ActiveCfg = Release|Win32
 		{F8F99D9F-D538-4AC2-89FA-4073C332F266}.Release|x86.Build.0 = Release|Win32
+		{526CF9E8-8C15-4E78-86FC-327637EA761B}.Debug|x64.ActiveCfg = Debug|x64
+		{526CF9E8-8C15-4E78-86FC-327637EA761B}.Debug|x64.Build.0 = Debug|x64
+		{526CF9E8-8C15-4E78-86FC-327637EA761B}.Debug|x86.ActiveCfg = Debug|Win32
+		{526CF9E8-8C15-4E78-86FC-327637EA761B}.Debug|x86.Build.0 = Debug|Win32
+		{526CF9E8-8C15-4E78-86FC-327637EA761B}.Release|x64.ActiveCfg = Release|x64
+		{526CF9E8-8C15-4E78-86FC-327637EA761B}.Release|x64.Build.0 = Release|x64
+		{526CF9E8-8C15-4E78-86FC-327637EA761B}.Release|x86.ActiveCfg = Release|Win32
+		{526CF9E8-8C15-4E78-86FC-327637EA761B}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -175,6 +185,7 @@ Global
 		{5D8A399F-BDB2-46CC-961E-BF5EF45D483B} = {2729DDB8-38C0-4C25-8D6A-47C141D32DE7}
 		{F9A604E5-D4FA-4938-980B-5D5C6258716A} = {CA09D19A-DC86-4707-98FF-5DF86D381B73}
 		{F8F99D9F-D538-4AC2-89FA-4073C332F266} = {2729DDB8-38C0-4C25-8D6A-47C141D32DE7}
+		{526CF9E8-8C15-4E78-86FC-327637EA761B} = {2729DDB8-38C0-4C25-8D6A-47C141D32DE7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {83856DFC-A4A1-4B20-BF63-DEB2ED417899}
