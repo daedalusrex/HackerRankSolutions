@@ -9,12 +9,12 @@ using namespace std;
 
 static int gridsize = 0;
 
-bool CellAllowed(vector<string> &grid, vector<vector<int>> &steps, pair<int, int> cell)
+bool CellAllowed(vector<string> &grid, vector<vector<int>> &steps, pair<int, int> cell, int newstep)
 {
 	if (cell.first >= 0 && cell.first < gridsize && cell.second >= 0 && cell.second < gridsize)
 	{
 		char test = grid[cell.first].at(cell.second);
-		if (test == '.' && steps[cell.first][cell.second] == 0)
+		if (test == '.' && (steps[cell.first][cell.second] == 0 || steps[cell.first][cell.second] > newstep ))
 			return true;
 	}
 	return false;
@@ -40,15 +40,46 @@ int minimumMoves(vector <string> grid, int startX, int startY, int goalX, int go
 
 		int steps = allsteps[cell.first][cell.second] + 1;
 
-
+		//misread, should add all neighbors in a line, like a rook
 		vector<pair<int, int>> neighbors;
-		neighbors.push_back(make_pair(cell.first - 1, cell.second));
-		neighbors.push_back(make_pair(cell.first + 1, cell.second));
-		neighbors.push_back(make_pair(cell.first, cell.second - 1));
-		neighbors.push_back(make_pair(cell.first, cell.second + 1));
 
+		int move = 1;
+
+		//Look to the North
+		while (CellAllowed(grid, allsteps, make_pair(cell.first - move, cell.second),steps))
+		{	neighbors.push_back(make_pair(cell.first - move, cell.second));
+			move++;
+		}
+		move = 1;
+
+		//Look to the  South
+		while (CellAllowed(grid, allsteps, make_pair(cell.first + move, cell.second), steps))
+		{
+			neighbors.push_back(make_pair(cell.first + move, cell.second));
+			move++;
+		}
+		move = 1;
+
+		//Look to the East
+		while (CellAllowed(grid, allsteps, make_pair(cell.first, cell.second - move), steps))
+		{
+			neighbors.push_back(make_pair(cell.first, cell.second - move));
+			move++;
+		}
+		move = 1;
+
+		//Look to the West
+		while (CellAllowed(grid, allsteps, make_pair(cell.first, cell.second + move), steps))
+		{
+			neighbors.push_back(make_pair(cell.first, cell.second + move));
+			move++;
+		}
+		
+		
+
+		
 		for (vector<pair<int, int>>::iterator it = neighbors.begin(); it != neighbors.end(); it++) {
-			if (CellAllowed(grid, allsteps, *it))
+			if (CellAllowed(grid, allsteps, *it, steps))
 			{
 				search.push(make_pair(it->first, it->second));
 				allsteps[it->first][it->second] = steps;
