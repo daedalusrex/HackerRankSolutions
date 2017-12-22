@@ -1,4 +1,3 @@
-#include <bits/stdc++.h>
 #include <queue>
 #include <vector>
 #include <cstdlib>
@@ -14,7 +13,7 @@ bool CellAllowed(vector<string> &grid, vector<vector<int>> &steps, pair<int, int
 	if (cell.first >= 0 && cell.first < gridsize && cell.second >= 0 && cell.second < gridsize)
 	{
 		char test = grid[cell.first].at(cell.second);
-		if (test == '.' && (steps[cell.first][cell.second] == 0 || steps[cell.first][cell.second] > newstep ))
+		if (test == '.' && (steps[cell.first][cell.second] == 0 || steps[cell.first][cell.second] >= newstep ))
 			return true;
 	}
 	return false;
@@ -32,7 +31,8 @@ int minimumMoves(vector <string> grid, int startX, int startY, int goalX, int go
 
 
 	//plan is to rewrite each cell, with step value, stop and return when you get to goal
-	while (!search.empty() && allsteps[goalX][goalY] == 0)
+	//&& allsteps[goalX][goalY] == 0
+	while (!search.empty() )
 	{
 
 		pair<int, int> cell = search.front();
