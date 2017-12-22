@@ -13,29 +13,32 @@ public:
 	stack<int> stack_newest_on_top, stack_oldest_on_top;
 	void push(int x) {
 		stack_newest_on_top.push(x);
-
-		stack_oldest_on_top = stack<int>();
-		stack<int> copy_stack = stack_newest_on_top;
-		while (!copy_stack.empty())
-		{
-			stack_oldest_on_top.push(copy_stack.top());
-			copy_stack.pop();
-		}
 	}
 
 	void pop() {
-		stack_oldest_on_top.pop();
-
-		stack_newest_on_top = stack<int>();
-		stack<int> copy_stack = stack_oldest_on_top;
-		while (!copy_stack.empty())
+		if (stack_oldest_on_top.empty())
 		{
-			stack_newest_on_top.push(copy_stack.top());
-			copy_stack.pop();
+			while (!stack_newest_on_top.empty())
+			{
+				stack_oldest_on_top.push(stack_newest_on_top.top());
+				stack_newest_on_top.pop();
+			}
 		}
+		
+		stack_oldest_on_top.pop();
 	}
 
 	int front() {
+		
+		if (stack_oldest_on_top.empty())
+		{
+			while (!stack_newest_on_top.empty())
+			{
+				stack_oldest_on_top.push(stack_newest_on_top.top());
+				stack_newest_on_top.pop();
+			}
+		}
+
 		return stack_oldest_on_top.top();
 	}
 };
