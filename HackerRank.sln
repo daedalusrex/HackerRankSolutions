@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27130.2010
+VisualStudioVersion = 15.0.27130.2003
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HackerRank_Recursion_SuperDigit", "HackerRank_Recursion\HackerRank_Recursion.vcxproj", "{C78D8DD0-E9F2-4E82-AC5E-D97A3CD28828}"
 EndProject
@@ -42,6 +42,10 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CrackingCodingInterview", "CrackingCodingInterview", "{30166D39-B57A-4E66-BD20-4DD07DDE0E9E}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TaleofTwoStacks", "TaleofTwoStacks\TaleofTwoStacks.vcxproj", "{B31B80BD-F40E-41DF-B4AA-8D78FF6B8804}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Algorithms", "Algorithms", "{966D5593-D08C-4CF9-A486-E0DDA85FA6C5}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TheCoinChangeProblem", "TheCoinChangeProblem\TheCoinChangeProblem.vcxproj", "{2CD823EE-5A35-4468-BC89-5A533E31607A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -187,6 +191,14 @@ Global
 		{B31B80BD-F40E-41DF-B4AA-8D78FF6B8804}.Release|x64.Build.0 = Release|x64
 		{B31B80BD-F40E-41DF-B4AA-8D78FF6B8804}.Release|x86.ActiveCfg = Release|Win32
 		{B31B80BD-F40E-41DF-B4AA-8D78FF6B8804}.Release|x86.Build.0 = Release|Win32
+		{2CD823EE-5A35-4468-BC89-5A533E31607A}.Debug|x64.ActiveCfg = Debug|x64
+		{2CD823EE-5A35-4468-BC89-5A533E31607A}.Debug|x64.Build.0 = Debug|x64
+		{2CD823EE-5A35-4468-BC89-5A533E31607A}.Debug|x86.ActiveCfg = Debug|Win32
+		{2CD823EE-5A35-4468-BC89-5A533E31607A}.Debug|x86.Build.0 = Debug|Win32
+		{2CD823EE-5A35-4468-BC89-5A533E31607A}.Release|x64.ActiveCfg = Release|x64
+		{2CD823EE-5A35-4468-BC89-5A533E31607A}.Release|x64.Build.0 = Release|x64
+		{2CD823EE-5A35-4468-BC89-5A533E31607A}.Release|x86.ActiveCfg = Release|Win32
+		{2CD823EE-5A35-4468-BC89-5A533E31607A}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -199,6 +211,7 @@ Global
 		{F8F99D9F-D538-4AC2-89FA-4073C332F266} = {2729DDB8-38C0-4C25-8D6A-47C141D32DE7}
 		{526CF9E8-8C15-4E78-86FC-327637EA761B} = {2729DDB8-38C0-4C25-8D6A-47C141D32DE7}
 		{B31B80BD-F40E-41DF-B4AA-8D78FF6B8804} = {30166D39-B57A-4E66-BD20-4DD07DDE0E9E}
+		{2CD823EE-5A35-4468-BC89-5A533E31607A} = {966D5593-D08C-4CF9-A486-E0DDA85FA6C5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {83856DFC-A4A1-4B20-BF63-DEB2ED417899}
