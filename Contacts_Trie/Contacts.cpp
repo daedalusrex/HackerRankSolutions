@@ -55,9 +55,9 @@ public:
 };
 
 
-void new_entry(t_node root, string contact)
+void new_entry(t_node *root, string contact)
 {
-	t_node* next = &root;
+	t_node* next = root;
 	t_node* old = next;
 	int i = 0;
 
@@ -80,21 +80,25 @@ void new_entry(t_node root, string contact)
 		old->children.push_back(next);
 
 		if (i == contact.size() - 1)
+		{
 			next->is_word = true;
+			
+		}
+			
 
 		old = next;
 		i++;
 	}
 }
 
-int find_numContacts(t_node root, string contact)
+int find_numContacts(t_node *root, string contact)
 {
 	int cur_names = 0;
 	//traverse tree, until out of contact or out of children
 	//out of children print 0
 	//out of contact, print num prefix at current node
 
-	t_node *old = &root;
+	t_node *old = root;
 	t_node * current = old;
 	int i = 0;
 
@@ -104,6 +108,7 @@ int find_numContacts(t_node root, string contact)
 		if (current)
 		{
 			cur_names = current->num_prefix;
+			
 		}
 		
 		old = current;
@@ -113,6 +118,9 @@ int find_numContacts(t_node root, string contact)
 
 	if (current == NULL)
 		cur_names = 0;
+	else if (current->is_word && cur_names == 0)
+		cur_names++;
+
 
 	return cur_names;
 }
@@ -121,7 +129,7 @@ int find_numContacts(t_node root, string contact)
 int main() {
 	int n;
 	//Init trie
-	t_node root;
+	t_node* root = new t_node();
 
 	cin >> n;
 	for (int a0 = 0; a0 < n; a0++) {
