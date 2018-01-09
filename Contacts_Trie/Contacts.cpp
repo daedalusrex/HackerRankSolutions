@@ -45,11 +45,20 @@ public:
 
 	t_node* ChildHasLetter(char test)
 	{
-		for (auto it : children)
+		/*for (auto it : children)
 		{
 			if (it->data == test)
 				return it;
 		}
+		*/
+
+		for (vector<t_node*>::iterator it = children.begin(); it != children.end(); it++)
+		{
+			if ((*it)->data == test)
+				return *it;
+		}
+		
+
 		return NULL;
 	}
 };
@@ -63,28 +72,26 @@ void new_entry(t_node *root, string contact)
 
 	do {
 		next = old->ChildHasLetter(contact[i]);
-		if (next) 
+		if (next)
 		{
 			next->num_prefix++;
 			old = next;
 			i++;
 		}
-		
+
 	} while (next != NULL && i < contact.size());
 
 	
 	while (i < contact.size())
 	{
 		next = new t_node(contact[i]);
-		old->num_prefix++;
 		old->children.push_back(next);
 
 		if (i == contact.size() - 1)
-		{
 			next->is_word = true;
-			
-		}
-			
+		else
+			next->num_prefix++;
+		
 
 		old = next;
 		i++;
@@ -118,7 +125,7 @@ int find_numContacts(t_node *root, string contact)
 
 	if (current == NULL)
 		cur_names = 0;
-	else if (current->is_word && cur_names == 0)
+	else if (current->is_word)
 		cur_names++;
 
 
