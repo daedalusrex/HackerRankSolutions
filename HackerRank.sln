@@ -49,6 +49,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TheCoinChangeProblem", "The
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Contacts_Trie", "Contacts_Trie\Contacts_Trie.vcxproj", "{4F61C044-F7F2-41BC-A8F8-77BCF9E059D2}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "NoPrefixSet_Trie", "NoPrefixSet_Trie\NoPrefixSet_Trie.vcxproj", "{DDBE5BC6-2089-40C4-98BB-B79089E8FFFD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -209,6 +211,14 @@ Global
 		{4F61C044-F7F2-41BC-A8F8-77BCF9E059D2}.Release|x64.Build.0 = Release|x64
 		{4F61C044-F7F2-41BC-A8F8-77BCF9E059D2}.Release|x86.ActiveCfg = Release|Win32
 		{4F61C044-F7F2-41BC-A8F8-77BCF9E059D2}.Release|x86.Build.0 = Release|Win32
+		{DDBE5BC6-2089-40C4-98BB-B79089E8FFFD}.Debug|x64.ActiveCfg = Debug|x64
+		{DDBE5BC6-2089-40C4-98BB-B79089E8FFFD}.Debug|x64.Build.0 = Debug|x64
+		{DDBE5BC6-2089-40C4-98BB-B79089E8FFFD}.Debug|x86.ActiveCfg = Debug|Win32
+		{DDBE5BC6-2089-40C4-98BB-B79089E8FFFD}.Debug|x86.Build.0 = Debug|Win32
+		{DDBE5BC6-2089-40C4-98BB-B79089E8FFFD}.Release|x64.ActiveCfg = Release|x64
+		{DDBE5BC6-2089-40C4-98BB-B79089E8FFFD}.Release|x64.Build.0 = Release|x64
+		{DDBE5BC6-2089-40C4-98BB-B79089E8FFFD}.Release|x86.ActiveCfg = Release|Win32
+		{DDBE5BC6-2089-40C4-98BB-B79089E8FFFD}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -223,6 +233,7 @@ Global
 		{B31B80BD-F40E-41DF-B4AA-8D78FF6B8804} = {30166D39-B57A-4E66-BD20-4DD07DDE0E9E}
 		{2CD823EE-5A35-4468-BC89-5A533E31607A} = {966D5593-D08C-4CF9-A486-E0DDA85FA6C5}
 		{4F61C044-F7F2-41BC-A8F8-77BCF9E059D2} = {30166D39-B57A-4E66-BD20-4DD07DDE0E9E}
+		{DDBE5BC6-2089-40C4-98BB-B79089E8FFFD} = {2729DDB8-38C0-4C25-8D6A-47C141D32DE7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {83856DFC-A4A1-4B20-BF63-DEB2ED417899}
