@@ -113,6 +113,9 @@
   <ItemGroup>
     <ClCompile Include="NoPrefix_Trie.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="NoPrefix_Trie.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

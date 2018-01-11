@@ -1,15 +1,6 @@
-#include <map>
-#include <set>
-#include <list>
 #include <cmath>
-#include <ctime>
-#include <deque>
-#include <queue>
-#include <stack>
 #include <string>
-#include <bitset>
 #include <cstdio>
-#include <limits>
 #include <vector>
 #include <climits>
 #include <cstring>
@@ -27,67 +18,72 @@ using namespace std;
 
 class t_node
 {
+private:
+	//chars are limited to 10 'a' - 'j'
+	t_node * ninos[10];
+
 public:
-	t_node(char c) : data(c), is_word(false), num_prefix(0), children() {};
-	t_node() :data('\0'), is_word(false), num_prefix(0), children() {};
-
+	t_node(char c) : data(c), is_word(false), num_prefix(0), ninos{ NULL } {};
+	t_node() :data('\0'), is_word(false), num_prefix(0), ninos{ NULL } {};
+	//char in this node
 	char data;
-
-	//get's incremented every insert, and traverse
+	//get's incremented every insert
 	int num_prefix;
-
 	//true if a word ends at this node
 	bool is_word;
 
-	vector<t_node*> children;
-	//t_node * childs[26];
+	//adds a new childe node with char already present
+	void add_child(t_node* new_child)
+	{
+		//protect against bad input
+		if (!new_child || new_child->data < 'a' || new_child->data > 'j')
+			return;
 
+		ninos[new_child->data - 'a'] = new_child;
+	}
 
+	//returns node of letter, or false
 	t_node* ChildHasLetter(char test)
 	{
-		/*for (auto it : children)
-		{
-		if (it->data == test)
-		return it;
-		}
-		*/
+		if(test < 'a' || test > 'j')
+			return NULL;
 
-		for (vector<t_node*>::iterator it = children.begin(); it != children.end(); it++)
-		{
-			if ((*it)->data == test)
-				return *it;
-		}
-
-
-		return NULL;
+		return ninos[test - 'a'];
 	}
 };
 
 
-void new_entry(t_node *root, string contact)
+bool new_entry(t_node *root, string entry_to_add)
 {
 	t_node* next = root;
 	t_node* old = next;
 	int i = 0;
 
+	//Traverse while there are prefixes in current tree
 	do {
-		next = old->ChildHasLetter(contact[i]);
+		next = old->ChildHasLetter(entry_to_add[i]);
 		if (next)
 		{
+			if (next->is_word)
+			{
+				cout << "BAD SET\n" << entry_to_add << endl;
+				return false;
+			}
+				
 			next->num_prefix++;
 			old = next;
 			i++;
 		}
 
-	} while (next != NULL && i < contact.size());
+	} while (next != NULL && i < entry_to_add.size());
 
-
-	while (i < contact.size())
+	//Reached end of current info in tree, but more chars to add
+	while (i < entry_to_add.size())
 	{
-		next = new t_node(contact[i]);
-		old->children.push_back(next);
+		next = new t_node(entry_to_add[i]);
+		old->add_child(next);
 
-		if (i == contact.size() - 1)
+		if (i == entry_to_add.size() - 1)
 			next->is_word = true;
 		else
 			next->num_prefix++;
@@ -96,66 +92,7 @@ void new_entry(t_node *root, string contact)
 		old = next;
 		i++;
 	}
-}
-
-int find_numPrefixAndWords(t_node *root, string fix_entry, string &fail_case)
-{
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	int cur_names = 0;
-	//traverse tree, until out of fix_entry or out of children
-	//out of children print 0
-	//out of fix_entry, print num prefix at current node
-
-
-	//need to redo this logic
-	t_node *old = root;
-	t_node * current = old;
-	int i = 0;
-
-	while (current != NULL && i < fix_entry.size())
-	{
-		current = old->ChildHasLetter(fix_entry[i]);
-
-		if (current)
-		{
-			cur_names = current->num_prefix;
-
-		}
-
-		old = current;
-		i++;
-
-	}
-
-	if (current == NULL)
-		cur_names = 0;
-	else if (current->is_word)
-		cur_names++;
-
-
-	return cur_names;
+	return true;
 }
 
 
@@ -163,29 +100,15 @@ int main() {
 	int n;
 	//Init trie
 	t_node* root = new t_node();
-	vector<string> entry_list;
 	
 	cin >> n;
 	for (int a0 = 0; a0 < n; a0++) {
 		string name;
 		cin >> name;
 
-		new_entry(root, name);
-		entry_list.push_back(name);
-
-	}
-
-	for (auto it : entry_list)
-	{
-		string fail_case;
-		int test = find_numPrefixAndWords(root, it, fail_case);
-
-		if (test != 0)
-		{
-			cout << "BAD SET\n" << fail_case << endl;
+		if (!new_entry(root, name))
 			return 0;
-		}
-					
+
 	}
 
 	//print good set
