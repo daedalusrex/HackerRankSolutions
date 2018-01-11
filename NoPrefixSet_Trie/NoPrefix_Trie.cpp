@@ -98,13 +98,38 @@ void new_entry(t_node *root, string contact)
 	}
 }
 
-int find_numPrefixAndWords(t_node *root, string fix_entry)
+int find_numPrefixAndWords(t_node *root, string fix_entry, string &fail_case)
 {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	int cur_names = 0;
 	//traverse tree, until out of fix_entry or out of children
 	//out of children print 0
 	//out of fix_entry, print num prefix at current node
 
+
+	//need to redo this logic
 	t_node *old = root;
 	t_node * current = old;
 	int i = 0;
@@ -112,6 +137,7 @@ int find_numPrefixAndWords(t_node *root, string fix_entry)
 	while (current != NULL && i < fix_entry.size())
 	{
 		current = old->ChildHasLetter(fix_entry[i]);
+
 		if (current)
 		{
 			cur_names = current->num_prefix;
@@ -151,11 +177,12 @@ int main() {
 
 	for (auto it : entry_list)
 	{
-		int test = find_numPrefixAndWords(root, it);
+		string fail_case;
+		int test = find_numPrefixAndWords(root, it, fail_case);
 
 		if (test != 0)
 		{
-			cout << "BAD SET\n" << it << endl;
+			cout << "BAD SET\n" << fail_case << endl;
 			return 0;
 		}
 					

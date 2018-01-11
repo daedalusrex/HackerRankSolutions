@@ -21,7 +21,7 @@
 #include <ctime>
 #include <cassert>
 
-using namespace std; // }}}
+using namespace std; 
 
 
 
@@ -45,39 +45,67 @@ int main()
 	vector<bool> visited(N, false);
 	vector<vector<int>> countries;
 
-	for (vector<bool>::iterator it = visited.begin(); it != visited.end(); it++)	
-	{
+	//for (vector<bool>::iterator it = visited.begin(); it != visited.end(); it++)	
+	//{
 		//If current node is already visited, continue to the next one
-		if (*it == true)
-			continue;
-
+		//if (*it == true)
+			//continue;
 		//else
-		int current_astro = it - visited.begin();
-		vector<int> new_country;
-		vector<int> search;
-		search.push_back(current_astro);
-
-		while (!search.empty()) 
+	for(int current_astro = 0; current_astro < visited.size(); current_astro++)
+	{
+		if (!visited[current_astro])
 		{
-			int cur_node = search.back();
-			visited[cur_node] = true;
-			search.pop_back();
-			new_country.push_back(cur_node);
+			vector<int> new_country;
+			vector<int> search;
+			search.push_back(current_astro);
 
-			//Add children to search, if unvisted
-			for (vector<int>::const_reverse_iterator rit = pairs[cur_node].rbegin();
-													rit != pairs[cur_node].rend(); rit++)
+			while (!search.empty())
 			{
-				if (!visited[*rit])
-					search.push_back(*rit);
-			}
-		}
+				int cur_node = search.back();
+				new_country.push_back(cur_node);
+				visited[cur_node] = true;
+				search.pop_back();
 
-		countries.push_back(new_country);
+				for (auto pair_it : pairs[cur_node])
+				{
+					if (!visited[pair_it])
+					{
+						search.push_back(pair_it);
+						visited[pair_it] = true;
+					}
+						
+				}
+
+				//Add children to search, if unvisted
+				/*
+				for (vector<int>::const_reverse_iterator rit = pairs[cur_node].rbegin();
+														rit != pairs[cur_node].rend(); rit++)
+				{
+					if (!visited[*rit])
+						search.push_back(*rit);
+				}
+				*/
+			
+			}
+
+			countries.push_back(new_country);
+		}
 	}
 
 	int numcountries = countries.size();
 
+
+	long new_sum = 0;
+	long new_result = 0;
+
+	for (auto it : countries)
+	{
+		new_result += new_sum * it.size();
+		new_sum += it.size();
+
+	}
+
+	/* //Not correct 
 	for (vector<vector<int>>::iterator nation = countries.begin(); nation != countries.end(); nation++)
 	{
 		int foreign_pairs = 0;
@@ -93,7 +121,8 @@ int main()
 		nation->clear();
 		result += foreign_pairs;
 	}
+	*/
 
-	cout << result << endl;
+	cout << new_result << endl;
 	return 0;
 }
