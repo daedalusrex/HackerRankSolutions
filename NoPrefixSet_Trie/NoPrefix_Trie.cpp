@@ -2,15 +2,10 @@
 #include <string>
 #include <cstdio>
 #include <vector>
-#include <climits>
 #include <cstring>
 #include <cstdlib>
-#include <fstream>
-#include <numeric>
 #include <sstream>
 #include <iostream>
-#include <algorithm>
-#include <unordered_map>
 
 using namespace std;
 
@@ -76,6 +71,14 @@ bool new_entry(t_node *root, string entry_to_add)
 		}
 
 	} while (next != NULL && i < entry_to_add.size());
+
+
+	if (i == entry_to_add.size() && next->num_prefix > 1)
+	{
+		cout << "BAD SET\n" << entry_to_add << endl;
+		return false;
+	}
+
 
 	//Reached end of current info in tree, but more chars to add
 	while (i < entry_to_add.size())
