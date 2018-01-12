@@ -7,34 +7,18 @@
 using namespace std;
 
 int sansaXor(vector <int> arr) {
-	// Complete this function
-	//Need to xor each element and each sub array element
-	// Luckily, xor is communtable and order does not matter
-	//So should be able to keep a running sum and xor all things to that
+	//Due to properties of Xor, only care if 
+	//there occurs an odd or even number of a particular element
+	//xor only odds, as others will be zero
 	
+	int xor_total = 0, N = arr.size();
 
-	int xor_collect = arr[0];
-	for (int i = 1; i < arr.size(); i++)
+	for (int i = 1; i <= N; i++)
 	{
-		xor_collect ^= arr[i];
-	}
-
-	int xor_total = 0;
-
-	for (int groupsize = 1; groupsize <= arr.size(); groupsize++)
-	{
-		int group_xor = 0;
-		
-
-		for (int ops = 0; ops < groupsize; ops++)
-		{
+		int occurences = i * (N - i + 1);
+		if (occurences % 2 != 0)
+			xor_total ^= arr[i - 1];
 			
-
-			group_xor = arr[ops] ^ arr[ops + 1]
-
-
-
-		}
 	}
 	
 
