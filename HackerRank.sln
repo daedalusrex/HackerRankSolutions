@@ -57,6 +57,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CompInGraph_Disjoint", "Com
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SherlockCost_DynProg", "SherlockCost_DynProg\SherlockCost_DynProg.vcxproj", "{DBA8F84F-416C-4C59-9401-20C85A36CE22}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RoadsAndLibraries", "RoadsAndLibraries\RoadsAndLibraries.vcxproj", "{9CF388AF-2EF8-4426-9625-BAB67D80B6DD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -249,6 +251,14 @@ Global
 		{DBA8F84F-416C-4C59-9401-20C85A36CE22}.Release|x64.Build.0 = Release|x64
 		{DBA8F84F-416C-4C59-9401-20C85A36CE22}.Release|x86.ActiveCfg = Release|Win32
 		{DBA8F84F-416C-4C59-9401-20C85A36CE22}.Release|x86.Build.0 = Release|Win32
+		{9CF388AF-2EF8-4426-9625-BAB67D80B6DD}.Debug|x64.ActiveCfg = Debug|x64
+		{9CF388AF-2EF8-4426-9625-BAB67D80B6DD}.Debug|x64.Build.0 = Debug|x64
+		{9CF388AF-2EF8-4426-9625-BAB67D80B6DD}.Debug|x86.ActiveCfg = Debug|Win32
+		{9CF388AF-2EF8-4426-9625-BAB67D80B6DD}.Debug|x86.Build.0 = Debug|Win32
+		{9CF388AF-2EF8-4426-9625-BAB67D80B6DD}.Release|x64.ActiveCfg = Release|x64
+		{9CF388AF-2EF8-4426-9625-BAB67D80B6DD}.Release|x64.Build.0 = Release|x64
+		{9CF388AF-2EF8-4426-9625-BAB67D80B6DD}.Release|x86.ActiveCfg = Release|Win32
+		{9CF388AF-2EF8-4426-9625-BAB67D80B6DD}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -275,6 +285,7 @@ Global
 		{149BAB91-EADB-48D5-AE3C-165290320EC1} = {966D5593-D08C-4CF9-A486-E0DDA85FA6C5}
 		{A972A835-185C-49A1-B7BE-29C80D3B4080} = {2729DDB8-38C0-4C25-8D6A-47C141D32DE7}
 		{DBA8F84F-416C-4C59-9401-20C85A36CE22} = {966D5593-D08C-4CF9-A486-E0DDA85FA6C5}
+		{9CF388AF-2EF8-4426-9625-BAB67D80B6DD} = {966D5593-D08C-4CF9-A486-E0DDA85FA6C5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {83856DFC-A4A1-4B20-BF63-DEB2ED417899}
