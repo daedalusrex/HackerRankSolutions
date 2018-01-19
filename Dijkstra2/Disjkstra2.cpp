@@ -45,41 +45,44 @@ public:
 	node() : index(0), s_dist(INT_MAX), nodes(), edges() {}
 };
 
-
-
 //concern regarding the way I'm using memory and if priority queue would update if node changes
 struct comp_s_cost
 {
-	bool operator()(const node & left, const node &right)
+	bool operator()(const node* left, const node* right)
 	{
-		return left.s_dist > right.s_dist;
+		return left->s_dist > right->s_dist;
 	}
 };
 
 void calc_shortest_paths(int start,vector<node> &adj_list)
 {
 	adj_list[start].s_dist = 0;
-	
-	vector<bool> visited(adj_list.size(), false);
-	priority_queue<node, vector<node>, comp_s_cost> search;
-	search.push(adj_list[start]);
+	int size = adj_list.size();
+	vector<bool> visited(size, false);
+	priority_queue<node*, vector<node*>, comp_s_cost> search;
+	search.push(&adj_list[start]);
 	
 	while(!search.empty())
 	{
-		node current = search.top();
+		node *current = search.top();
 		search.pop();
-		visited[current.index] = true;
+		if (visited[current->index]) continue;
 
-		for (edge* it : adj_list[current.index].edges)
+		visited[current->index] = true;
+
+		//for (edge* it : adj_list[current->index].edges)
+		for(vector<edge*>::iterator it = adj_list[current->index].edges.begin(); it != adj_list[current->index].edges.end(); it++)
 		{
 			//have an edge, and its dist
-			int far_node = it->node_B;
-			if (it->node_B == current.index)
-				far_node = it->node_A;
+			int far_node = (*it)->node_B;
+			if ((*it)->node_B == current->index)
+				far_node = (*it)->node_A;
 
+
+			
 
 			//if(edge dist + curret s_dist < far_node_s_dist
-			int newpath_dist = it->dist + current.s_dist;
+			int newpath_dist = (*it)->dist + current->s_dist;
 			if (newpath_dist < adj_list[far_node].s_dist)
 			{
 				//far node s_dist = edge dist + current s_dist
@@ -88,18 +91,20 @@ void calc_shortest_paths(int start,vector<node> &adj_list)
 
 			//if(not visited add it), pretty sure this is wrong
 			if (!visited[far_node])
-				search.push(adj_list[far_node]);
+				search.push(&adj_list[far_node]);
 		}
 	}
 	
 	//print a single line consisting space separated integers denoting the shortest distance 
 	//from starting position in increasing order of their labels. (1-N)
-	//For unreachable nodes (INT MAX), print -1	//for auto it adj_list cout it.s_dist
-	for (auto it : adj_list)
+	//For unreachable nodes (INT MAX), print -1
+	//for auto it adj_list cout it.s_dist
+	//for (auto it : adj_list)
+	for(vector<node>::iterator it = adj_list.begin(); it != adj_list.end(); it++)
 	{
-		if (it.index == start) continue;
+		if ((*it).index == start) continue;
 
-		int nextout = it.s_dist;
+		int nextout = (*it).s_dist;
 		if (nextout == INT_MAX)
 			nextout = -1;
 
@@ -133,10 +138,53 @@ int main() {
 			x--;
 			y--;
 			edge *new_connection = new edge(r, x, y);
-			adj_list[x].nodes.push_back(y);
-			adj_list[x].edges.push_back(new_connection);
-			adj_list[y].nodes.push_back(x);
-			adj_list[y].edges.push_back(new_connection);
+			bool edge_already_exists = false;
+
+			//scan and prune nodes
+			for (vector<edge*>::iterator it = adj_list[x].edges.begin(); it != adj_list[x].edges.end(); it++)
+			{
+				//This edge already exists
+				if ((x == (*it)->node_A && y == (*it)->node_B) ||
+					(y == (*it)->node_A && x == (*it)->node_B))
+				{
+					edge_already_exists = true;
+					//new edge is shorter than one already present
+					if (r < (*it)->dist)
+					{
+						//delete old edge, insert new edge, do not push back new node
+						for (vector<edge*>::iterator yit = adj_list[y].edges.begin(); yit != adj_list[y].edges.end(); yit++)
+						{
+							if (*yit == *it)
+								yit = adj_list[y].edges.erase(yit);
+						}
+						it = adj_list[x].edges.erase(it);
+					
+					
+						adj_list[x].edges.push_back(new_connection);
+						adj_list[y].edges.push_back(new_connection);
+
+					}
+					else
+					{
+						//kill new edge do nothing
+
+					}
+
+					break;
+				}
+
+
+
+
+			}
+
+			if (!edge_already_exists)
+			{
+				adj_list[x].nodes.push_back(y);
+				adj_list[x].edges.push_back(new_connection);
+				adj_list[y].nodes.push_back(x);
+				adj_list[y].edges.push_back(new_connection);
+			}
 			
 
 		}
