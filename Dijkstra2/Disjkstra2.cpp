@@ -114,7 +114,7 @@ void calc_shortest_paths(int start,vector<node> &adj_list)
 	cout << endl;
 }
 
-int main() {
+int not_main() {
 	int t;
 	cin >> t;
 	for (int a0 = 0; a0 < t; a0++) {
@@ -122,8 +122,8 @@ int main() {
 		int m;
 		cin >> n >> m;
 
-		vector<node> adj_list (n);
-		
+		vector<node> adj_list(n);
+
 		for (int i = 0; i < n; i++)
 			adj_list[i].index = i;
 
@@ -138,6 +138,30 @@ int main() {
 			x--;
 			y--;
 			edge *new_connection = new edge(r, x, y);
+			adj_list[x].nodes.push_back(y);
+			adj_list[x].edges.push_back(new_connection);
+			adj_list[y].nodes.push_back(x);
+			adj_list[y].edges.push_back(new_connection);
+
+
+		}
+		int s;
+		cin >> s;
+
+		calc_shortest_paths(s - 1, adj_list);
+
+		//clean up dynamic pointers
+	}
+
+	return 0;
+}
+
+			/* The next like 40 lines I added to attempt to optimize the map. 
+			I do not like it because it is convulted and confusing
+			I think I will attempt to restart, and recreate all data structs
+			*/
+			
+			/*			
 			bool edge_already_exists = false;
 
 			//scan and prune nodes
@@ -188,13 +212,4 @@ int main() {
 			
 
 		}
-		int s;
-		cin >> s;
-
-		calc_shortest_paths(s-1,adj_list);
-
-		//clean up dynamic pointers
-	}
-
-	return 0;
-}
+		*/

@@ -18,5 +18,8 @@
     <ClCompile Include="Disjkstra2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Dijkstra2_jacov2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
