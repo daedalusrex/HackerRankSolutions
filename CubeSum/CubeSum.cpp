@@ -13,37 +13,50 @@ using namespace std;
 #define N_LIMIT 100
 
 //might need to transform to longs
-long cube[N_LIMIT][N_LIMIT][N_LIMIT] = { 0 };
+long sum_cube[N_LIMIT][N_LIMIT][N_LIMIT] = { 0 };
+long entry_cube[N_LIMIT][N_LIMIT][N_LIMIT] = { 0 };
 int N = 0;
 bool cube_valid = true;
 
+
+
 void clear_cube()
 {
-	memset(cube, 0U, sizeof(int) * N_LIMIT * N_LIMIT * N_LIMIT);
+	memset(entry_cube, 0U, sizeof(long) * N_LIMIT * N_LIMIT * N_LIMIT);
+	cube_valid = false;
 }
 
 void update_entry(int x, int y , int z, int W) 
 {
 	cube_valid = false;
 
-	cube[x][y][z] = W;
+	entry_cube[x][y][z] = W;
 }
 
 void refresh_cube() 
-{
+{	//this will only work the first time, because afterwards, sums must change
+	//might need a second cube
 	//Push the value from each cell, into the 3 dimensions it will be summed, and do so in order
-	for (int k = 0; k < N-1; k++)
-	{
-		for (int j = 0; j < N-1; j++)
-		{
-			for (int i = 0; i < N-1; i++)
-			{
-				cube[i+1][j][k] += cube[i][j][k];
-				cube[i][j+1][k] += cube[i][j][k];
-				cube[i][j][k+1] += cube[i][j][k];
-			}
-		}
-	}
+
+	memcpy(sum_cube, entry_cube, sizeof(long) * N_LIMIT * N_LIMIT * N_LIMIT);
+
+
+	for (int i = 1; i < N; i++)
+		for (int j = 0; j < N; j++)
+			for (int k = 0; k < N; k++)
+				sum_cube[i][j][k] += sum_cube[i - 1][j][k];
+
+	for (int i = 0; i < N; i++)
+		for (int j = 1; j < N; j++)
+			for (int k = 0; k < N; k++)
+				sum_cube[i][j][k] += sum_cube[i][j - 1][k];
+
+	for (int i = 0; i < N; i++)
+		for (int j = 0; j < N; j++)
+			for (int k = 1; k < N; k++)
+				sum_cube[i][j][k] += sum_cube[i][j][k-1];
+
+	cube_valid = true;
 }
 
 long answer_query(int x1, int y1, int z1, int x2, int y2, int z2) 
@@ -53,8 +66,8 @@ long answer_query(int x1, int y1, int z1, int x2, int y2, int z2)
 
 	//Need to use pre-summed coordinates, and subtract smaller boxes
 	//figured this out by playing with foam blocks
-	return (cube[x2][y2][z2] + cube[x1][y1][z2] + cube[x1][y2][z1] + cube[x2][y1][z1]
-		  - cube[x1][y2][z2] - cube[x2][y1][z2] - cube[x2][y2][z1] - cube[x1][y1][z1]);
+	return (sum_cube[x2][y2][z2] + sum_cube[x1][y1][z2] + sum_cube[x1][y2][z1] + sum_cube[x2][y1][z1]
+		  - sum_cube[x1][y2][z2] - sum_cube[x2][y1][z2] - sum_cube[x2][y2][z1] - sum_cube[x1][y1][z1]);
 }
 
 
@@ -62,7 +75,7 @@ int main() {
 	//Handle input
 	int T; 
 	cin >> T;
-	for (int testc = 0; testc < 50; testc++)
+	for (int testc = 0; testc < T; testc++)
 	{
 		int M;
 		cin >> N >> M;
