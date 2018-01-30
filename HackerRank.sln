@@ -65,6 +65,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CubeSum", "CubeSum\CubeSum.
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BubbleSort", "BubbleSort\BubbleSort.vcxproj", "{19925488-F99B-4395-9EEB-0658386C8B20}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Comparator_Quicksort", "Comparator_Quicksort\Comparator_Quicksort.vcxproj", "{3A173D65-9549-4427-9424-48B6702A6B22}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -289,6 +291,14 @@ Global
 		{19925488-F99B-4395-9EEB-0658386C8B20}.Release|x64.Build.0 = Release|x64
 		{19925488-F99B-4395-9EEB-0658386C8B20}.Release|x86.ActiveCfg = Release|Win32
 		{19925488-F99B-4395-9EEB-0658386C8B20}.Release|x86.Build.0 = Release|Win32
+		{3A173D65-9549-4427-9424-48B6702A6B22}.Debug|x64.ActiveCfg = Debug|x64
+		{3A173D65-9549-4427-9424-48B6702A6B22}.Debug|x64.Build.0 = Debug|x64
+		{3A173D65-9549-4427-9424-48B6702A6B22}.Debug|x86.ActiveCfg = Debug|Win32
+		{3A173D65-9549-4427-9424-48B6702A6B22}.Debug|x86.Build.0 = Debug|Win32
+		{3A173D65-9549-4427-9424-48B6702A6B22}.Release|x64.ActiveCfg = Release|x64
+		{3A173D65-9549-4427-9424-48B6702A6B22}.Release|x64.Build.0 = Release|x64
+		{3A173D65-9549-4427-9424-48B6702A6B22}.Release|x86.ActiveCfg = Release|Win32
+		{3A173D65-9549-4427-9424-48B6702A6B22}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -319,6 +329,7 @@ Global
 		{B06CE32C-EA27-4F4F-9F76-14D4B43CB41D} = {966D5593-D08C-4CF9-A486-E0DDA85FA6C5}
 		{922D9CFE-B954-41B6-A816-7DD04391AAB7} = {2729DDB8-38C0-4C25-8D6A-47C141D32DE7}
 		{19925488-F99B-4395-9EEB-0658386C8B20} = {30166D39-B57A-4E66-BD20-4DD07DDE0E9E}
+		{3A173D65-9549-4427-9424-48B6702A6B22} = {30166D39-B57A-4E66-BD20-4DD07DDE0E9E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {83856DFC-A4A1-4B20-BF63-DEB2ED417899}
