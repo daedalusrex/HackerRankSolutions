@@ -5,7 +5,8 @@
 #include <algorithm>
 #include <cstring>
 #include <string>
-
+#include <string.h>
+#include "Comparator_Qsrt.h"
 using namespace std;
 
 struct Player {
@@ -13,34 +14,55 @@ struct Player {
 	int score;
 };
 
-
-//returns true if left is less than right
-bool less(Player &left, Player &right)
+//returns true if left is greater than right
+bool left_greater(Player &left, Player &right)
 {
-	// < 0 implies ptr1 is less
-	// (strcmp ==0 ) implies equality
-	// > 0 implies ptr 2 is less
-
-	if (left.score < right.score) return true;
+	if (left.score > right.score) return true;
 	if (left.score == right.score)
 		if (strcmp(left.name.c_str(), right.name.c_str()) <= 0)
 			return true;
 
-
 	return false;
 }
 
-vector<Player> comparator(vector<Player> players) {
 
-
-	//use quick sort, and maybe an extra comparator function
-
-	//recursively partition and then quicksort each half
-
-
+void quicksort(vector<Player> &players, int left, int right)
+{
+	if (left >= right) return;
 	
+	int i = left;
+	int j = right - 1;
+
+	Player partition = players[right];
+
+	while (i < j)
+	{
+		while (left_greater(players[i], partition) && i < (right-1))
+			i++;
+
+		while (left_greater(partition, players[j]) && j > left)
+			j--;
+		
+
+		if(i < j && left_greater(players[j], players[i]))
+			swap(players[i], players[j]);
+	}
+	
+	//replace partition in correct location
+	if (left_greater(partition, players[i]))
+		swap(players[i], players[right]);
+	else
+		i = right;
+
+	quicksort(players, left, i-1);
+	quicksort(players, i+1, right);
+}
 
 
+vector<Player> comparator(vector<Player> players) {
+	quicksort(players, 0, players.size() - 1);
+	//easiest trick would be to sort() array
+	return players;
 }
 
 int main() {
