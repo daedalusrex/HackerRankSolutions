@@ -24,24 +24,32 @@
 using namespace std;
 
 bool ransom_note(vector<string> magazine, vector<string> ransom) {
+	map<string, int> mag_words;
+	map<string, int> rans_dict;
 	
+	for (auto mag : magazine)
+	{
+		if (mag_words.count(mag))
+			mag_words[mag]++;
+		else
+			mag_words.insert(make_pair(mag, 1));
 
-	multimap<string, bool> words;
-	multimap<string, bool> rans_dict;
-	
-	for (auto it : magazine)
-		words.insert(make_pair(it, true));
+	}
+		
+	for (auto ran : ransom)
+	{
+		if (rans_dict.count(ran))
+			rans_dict[ran]++;
+		else
+			rans_dict.insert(make_pair(ran, 1));
 
-
-	for (auto r : ransom)
-		rans_dict.insert(make_pair(r, true));
+	}
 
 	for (auto itran : rans_dict)
-		if (words.count(itran.first) < rans_dict.count(itran.first))
+		if (!mag_words.count(itran.first) || mag_words[itran.first] < itran.second)
 			return false;
 
 	return true;
-
 }
 
 int main() {
