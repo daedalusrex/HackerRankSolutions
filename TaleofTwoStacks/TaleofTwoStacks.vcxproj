@@ -22,7 +22,7 @@
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{B31B80BD-F40E-41DF-B4AA-8D78FF6B8804}</ProjectGuid>
     <RootNamespace>TaleofTwoStacks</RootNamespace>
-    <WindowsTargetPlatformVersion />
+    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
