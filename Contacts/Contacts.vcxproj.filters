@@ -23,5 +23,14 @@
     <Text Include="contact_out.txt">
       <Filter>Resource Files</Filter>
     </Text>
+    <Text Include="contact_out08.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="inputtest08.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="output08.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
   </ItemGroup>
 </Project>

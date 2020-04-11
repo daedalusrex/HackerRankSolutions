@@ -148,23 +148,25 @@ vector<int> contacts(vector<vector<string>> queries) {
 
 int main()
 {
-    ofstream fout("contact_out.txt");
+    ifstream fin("inputtest08.txt");
+
+    ofstream fout("contact_out08.txt");
     //original
     //ofstream fout(getenv("OUTPUT_PATH"));
 
     int queries_rows;
-    cin >> queries_rows;
-    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    fin >> queries_rows;
+    fin.ignore(numeric_limits<streamsize>::max(), '\n');
 
     vector<vector<string>> queries(queries_rows);
     for (int queries_row_itr = 0; queries_row_itr < queries_rows; queries_row_itr++) {
         queries[queries_row_itr].resize(2);
 
         for (int queries_column_itr = 0; queries_column_itr < 2; queries_column_itr++) {
-            cin >> queries[queries_row_itr][queries_column_itr];
+            fin >> queries[queries_row_itr][queries_column_itr];
         }
 
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        fin.ignore(numeric_limits<streamsize>::max(), '\n');
     }
 
     vector<int> result = contacts(queries);
