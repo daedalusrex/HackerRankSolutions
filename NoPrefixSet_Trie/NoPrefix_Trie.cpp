@@ -10,7 +10,6 @@
 using namespace std;
 
 //trie data structure
-
 class t_node
 {
 private:
