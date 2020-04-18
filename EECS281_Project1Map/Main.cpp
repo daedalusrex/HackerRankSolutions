@@ -39,7 +39,7 @@ int main(void) {
 	size_t Columns = 6;
 
 
-    char* map = new char[Levels * Rows * Columns];
+    int* map = new int[Levels * Rows * Columns];
 	int counter = 0;
     	// assign values to allocated memory
 	for (int i = 0; i < Levels; i++)
@@ -49,16 +49,50 @@ int main(void) {
 		{
 			for (int k = 0; k < Columns; k++)
 			{
-				map[i*Rows*Columns + j*Columns + k] = 'a' + counter;
+				map[i * Rows * Columns + j * Columns + k] = counter;
+				//map[i*Rows*Columns + j*Columns + k] = 'a' + counter;
 				//*(map + i * Rows * Columns + j * Columns + k) = 'a' + counter;
 				cout << *(map + i * Rows * Columns + j * Columns + k) << " ";
-				counter = (counter+1) % ('z'-'a' + 1);
+				//counter = (counter+1) % ('z'-'a' + 1);
+				counter++;
 			}
 			cout << "\n";
 		}
 	}
 	
 
+	//conversion from flat array index to 3 indexs
+	//size_t flat_indext_test = (Levels - 1) * (Rows - 1) * (Columns - 1) +15;
+	size_t flat_indext_test = 1;
+	size_t origin = flat_indext_test;
+	size_t lev =0, row= 0, col = 0;
+	while (flat_indext_test > (Columns * Rows * (lev+1))) //use more modululs
+		lev++;
+
+	flat_indext_test = flat_indext_test % (Columns * Rows); //could also subtract calculation
+	
+	while (flat_indext_test > ((row+1) * Columns))
+		row++;
+
+	col = flat_indext_test % Columns;
+
+
+	cout << "\n\n\ncomplex index of " << origin << " is \n" << lev << " " << row << " " << col << "\n\n\n"<<endl;
+
+	//better way
+	flat_indext_test = origin;
+	lev = row = col = 0;
+	
+	//col = flat_indext_test % Columns; //maybe need to subtract
+	//row = ((flat_indext_test - col) % (Rows * Columns)) / Columns;
+	//lev = (flat_indext_test - row - col + 1) / (Rows * Columns);
+
+	col = flat_indext_test % Columns; 
+	row = ((flat_indext_test) % (Rows * Columns)) / Columns;
+	lev = (flat_indext_test) / (Rows * Columns);
+
+
+	cout << "\n\n\nBetter way with mod complex index of " << origin << " is \n" << lev << " " << row << " " << col << "\n\n\n" << endl;
 
 	//test memset, confirmed it works
 	memset(map, 'X', Levels * Rows * Columns);
