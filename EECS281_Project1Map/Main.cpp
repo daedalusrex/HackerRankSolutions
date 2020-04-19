@@ -29,109 +29,120 @@
 
 using namespace std;
 
+void modify_map_with_backtrace(Map& maze, size_t* parent_map)
+{
+	size_t next = maze.get_goal_index();
+	size_t parent = parent_map[maze.get_goal_index()];
+	//size_t parent = parent_map[current];
+
+	while (next != maze.get_start_index())
+	{
+		map_coordinates cor_next = maze.get_coordinates_from_index(next);
+		map_coordinates cor_parent = maze.get_coordinates_from_index(parent);
+
+		if (cor_next.row < cor_parent.row)
+			maze.modify_cell(parent, 'n');
+		else if (cor_next.row > cor_parent.row)
+			maze.modify_cell(parent, 's');
+		else if (cor_next.column < cor_parent.column)
+			maze.modify_cell(parent, 'w');
+		else if (cor_next.column > cor_parent.column)
+			maze.modify_cell(parent, 'e');
+		else if (cor_next.level < cor_parent.level)
+			maze.modify_cell(parent, 'u');
+		else if (cor_next.level > cor_parent.level)
+			maze.modify_cell(parent, 'd');
+
+		next = parent;
+		parent = parent_map[parent];
+	}
+}
+
+
+bool Solve_Map(Map& maze)
+{
+	queue<size_t> search;
+	bool* visited = new bool[maze.get_map_size()];
+	memset(visited, false, maze.get_map_size());
+	size_t* parent_map = new size_t[maze.get_map_size()];
+	memset(parent_map, (size_t)0, maze.get_map_size());
+
+	search.push(maze.get_start_index());
+	visited[maze.get_start_index()] = true;
+	size_t neighbors[6];
+	size_t current = 0;
+
+	bool solved = false;
+	while (!search.empty())
+	{
+		current = search.front();
+		search.pop();
+
+		if (current == maze.get_goal_index())
+		{
+			modify_map_with_backtrace(maze, parent_map);
+			solved = true;
+			break;
+		}
+			
+
+		unsigned short valid = maze.get_neighbors_of_index(current, neighbors);
+		for (int i = 0; i < valid; i++)
+		{
+			if (!visited[neighbors[i]]) {
+				search.push(neighbors[i]);
+				parent_map[neighbors[i]] = current;
+				visited[neighbors[i]] = true;
+			}
+		}
+
+	}
+
+	delete[] visited;
+	delete[] parent_map;
+	
+	return solved;
+}
+
 
 int main(void) {
 
-	Map quicktest(8,4,4);
-
-	quicktest.print_map_to_output(cout);
-
-	return 0;
-}
-
+	ifstream fin("input_tests/InSampleTest.txt");
+	size_t side_length;
+	size_t levels;
+	fin >> side_length;
+	fin >> levels;
 
 
-/*
-Can I do this in C++??  -- Basically no, but the templates trick allows it 
+	ofstream fout("output_tests/OutputBasic.txt");
 
-After much reading, I have determined that indeed if doing a flat array
-there is no way to use the brackets instead of pointer math
-because the compiler has no way of knowing the size of the dynamic array provided 
-at run time, and so it cannot translate the brackets into actual math operations on memory
-which is what the programmer must do. Casting will not work for the same reason.
-Templates also occur at compile time.
-Or, of course, just use an STL/boost class which have already been built to solve these problems
+	
 
-C has VLA's and C++ does not 
-So in fact they are sort of making us do this the hard or wrong way
-because they wanted us to learn, and not just get the STL
+	//later directions on how to access multiple files (run all tests at once)
+	/*std::string path = "/path/to/directory";
+	for (const auto& entry : fs::directory_iterator(path))
+		std::cout << entry.path() << std::endl;*/
 
+	Map testmap(levels, side_length, side_length);
+	bool solved = false;
 
-void arr_alloc (size_t x, size_t y, int(**aptr)[x][y])
-{
-  *aptr = malloc( sizeof(int[x][y]) ); // allocate a true 2D array
-  assert(*aptr != NULL);
-}
+	if (!testmap.initialize_from_input(fin))
+		fout << "Error in Input file";
+	else
+		solved = Solve_Map(testmap);
 
-
-template<size_t size1, size_t size2>
-int sub (int (&a)[size1][size2]) {
-    // ...
-}
-int main() {
-    int a[2][2];
-    sub(a);
-}
-
-void arr_fill (size_t x, size_t y, int array[x][y])
-{
-  for(size_t i=0; i<x; i++)
-  {
-    for(size_t j=0; j<y; j++)
-    {
-      array[i][j] = (int)j + 1;
-    }
-  }
-}
-
-void arr_print (size_t x, size_t y, int array[x][y])
-{
-  for(size_t i=0; i<x; i++)
-  {
-    for(size_t j=0; j<y; j++)
-    {
-      printf("%d ", array[i][j]);
-    }
-    printf("\n");
-  }
-}
-
-#include <iostream>
-
-// X x Y x Z matrix
-#define X 2
-#define Y 3
-#define Z 4
-
-// Dynamic Memory Allocation in C++ for 3D Array
-int main()
-{
-	// dynamically allocate memory of size X*Y*Z
-	int* A = new int[X * Y * Z];
-
-	// assign values to allocated memory
-	for (int i = 0; i < X; i++)
-		for (int j = 0; j < Y; j++)
-			for (int k = 0; k < Z; k++)
-				*(A + i*Y*Z + j*Z + k) = rand() % 100;
-
-	// print the 3D array
-	for (int i = 0; i < X; i++)
+	testmap.print_map_to_output(fout);
+	if (solved)
 	{
-		for (int j = 0; j < Y; j++)
-		{
-			for (int k = 0; k < Z; k++)
-				std::cout << *(A + i*Y*Z + j*Z + k) << " ";
-
-			std::cout << std::endl;
-		}
-		std::cout << std::endl;
+		fout << "SOLVED THE MAP" << endl;
 	}
 
-	// deallocate memory
-	delete[] A;
+	Map copy(testmap);
 
+	//ofstream fout("output_tests/OutputBasic.txt");
+	
+	testmap.print_map_to_output(cout);
+	copy.print_map_to_output(cout);
+	
 	return 0;
 }
-
-*/
