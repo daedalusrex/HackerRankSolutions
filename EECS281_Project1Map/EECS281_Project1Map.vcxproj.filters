@@ -13,6 +13,12 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Resource Files\InputTestCases">
+      <UniqueIdentifier>{d73bc8c8-1fd5-400a-a345-8a0640cabaee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\OutputResults">
+      <UniqueIdentifier>{2f06004f-3279-44ff-b7e6-3fe71ebd0523}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -26,5 +32,13 @@
     <ClInclude Include="Map.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="input_tests\InSampleTest.txt">
+      <Filter>Resource Files\InputTestCases</Filter>
+    </Text>
+    <Text Include="output_tests\OutputBasic.txt">
+      <Filter>Resource Files\OutputResults</Filter>
+    </Text>
   </ItemGroup>
 </Project>

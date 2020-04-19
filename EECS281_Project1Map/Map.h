@@ -18,30 +18,45 @@ struct map_coordinates
 class Map
 {
 private:
-	size_t num_levels;
-	size_t num_cols;
-	size_t num_rows;
-	size_t level_area_size;
-	
+	const size_t num_levels;
+	const size_t num_cols;
+	const size_t num_rows;
+	const size_t level_area_size;
+	const size_t total_map_size;
+
 	char* flat_map;
+
+	//flat array index of the starting position, first occurence of char 'S'
 	size_t start_point;
+	//flat array index of the starting position, first occurence of char 'O'
 	size_t goal_point;
 
-
-	Map() {};
-
+	//Map() {};
 public:
-	Map(size_t level_side_length, size_t level_number);
+	//creates new map with given dimensions, allocates needed memory
+	Map(size_t total_levels, size_t total_rows, size_t total_columns);
 	~Map();
-	Map(const Map& old_map);
+	Map(const Map& old);
 
-	void initialize_from_input(istream input);
+	size_t get_map_size() { return total_map_size; }
+	//uses input stream based on specs to fill in map with values for all chars
+	void initialize_from_input(istream &input);
+	//takes the flat array index and returns coordinates based on 3D array indexing scheme
 	inline map_coordinates get_coordinates_from_index(size_t flat_index);
+	//takes coordinates and returns the flat array index
 	inline size_t get_index_from_coordinates(map_coordinates input_coordinates);
+	//takes coordinates and returns the flat array index
 	inline size_t get_index_from_coordinates(size_t level, size_t row, size_t column);
-	void print_map_to_output(ostream output);
+	//prints out current map information with formatting to given output stream
+	void print_map_to_output(ostream &output);
+	//returns map coordinates of starting poisition, does not check if initialized
 	inline map_coordinates get_start_coordinates() { return get_coordinates_from_index(start_point); }
+	//returns map coordinates of goal position, does not check if initialized
 	inline map_coordinates get_goal_coordinates() { return get_coordinates_from_index(goal_point); }
-	void get_neighbors_of_index(size_t falt_index, size_t* neighbor_array);
+	//expects an array from caller, of max size 6 and fills with all valid neighbors flat indexes based on rules (limit of 6)
+	void get_neighbors_of_index(size_t flat_position, size_t* neighbor_array, unsigned short valid_neighbors);
+protected:
+	//Returns true only if test_point is within boundaries and has allowed char
+	bool point_is_traversable(map_coordinates test_point);
 };
 
