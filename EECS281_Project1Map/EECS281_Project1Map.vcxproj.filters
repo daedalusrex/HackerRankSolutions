@@ -37,7 +37,55 @@
     <Text Include="input_tests\InSampleTest.txt">
       <Filter>Resource Files\InputTestCases</Filter>
     </Text>
-    <Text Include="output_tests\OutputBasic.txt">
+    <Text Include="test_results_out\results_InSampleTest.txt">
+      <Filter>Resource Files\OutputResults</Filter>
+    </Text>
+    <Text Include="input_tests\test0.txt">
+      <Filter>Resource Files\InputTestCases</Filter>
+    </Text>
+    <Text Include="input_tests\test1.txt">
+      <Filter>Resource Files\InputTestCases</Filter>
+    </Text>
+    <Text Include="input_tests\test2.txt">
+      <Filter>Resource Files\InputTestCases</Filter>
+    </Text>
+    <Text Include="input_tests\test3.txt">
+      <Filter>Resource Files\InputTestCases</Filter>
+    </Text>
+    <Text Include="input_tests\test4.txt">
+      <Filter>Resource Files\InputTestCases</Filter>
+    </Text>
+    <Text Include="input_tests\test5.txt">
+      <Filter>Resource Files\InputTestCases</Filter>
+    </Text>
+    <Text Include="input_tests\test6.txt">
+      <Filter>Resource Files\InputTestCases</Filter>
+    </Text>
+    <Text Include="input_tests\test7.txt">
+      <Filter>Resource Files\InputTestCases</Filter>
+    </Text>
+    <Text Include="test_results_out\results_test0.txt">
+      <Filter>Resource Files\OutputResults</Filter>
+    </Text>
+    <Text Include="test_results_out\results_test1.txt">
+      <Filter>Resource Files\OutputResults</Filter>
+    </Text>
+    <Text Include="test_results_out\results_test2.txt">
+      <Filter>Resource Files\OutputResults</Filter>
+    </Text>
+    <Text Include="test_results_out\results_test3.txt">
+      <Filter>Resource Files\OutputResults</Filter>
+    </Text>
+    <Text Include="test_results_out\results_test4.txt">
+      <Filter>Resource Files\OutputResults</Filter>
+    </Text>
+    <Text Include="test_results_out\results_test5.txt">
+      <Filter>Resource Files\OutputResults</Filter>
+    </Text>
+    <Text Include="test_results_out\results_test6.txt">
+      <Filter>Resource Files\OutputResults</Filter>
+    </Text>
+    <Text Include="test_results_out\results_test7.txt">
       <Filter>Resource Files\OutputResults</Filter>
     </Text>
   </ItemGroup>

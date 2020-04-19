@@ -87,6 +87,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -146,7 +147,23 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="input_tests\InSampleTest.txt" />
-    <Text Include="output_tests\OutputBasic.txt" />
+    <Text Include="input_tests\test0.txt" />
+    <Text Include="input_tests\test1.txt" />
+    <Text Include="input_tests\test2.txt" />
+    <Text Include="input_tests\test3.txt" />
+    <Text Include="input_tests\test4.txt" />
+    <Text Include="input_tests\test5.txt" />
+    <Text Include="input_tests\test6.txt" />
+    <Text Include="input_tests\test7.txt" />
+    <Text Include="test_results_out\results_InSampleTest.txt" />
+    <Text Include="test_results_out\results_test0.txt" />
+    <Text Include="test_results_out\results_test1.txt" />
+    <Text Include="test_results_out\results_test2.txt" />
+    <Text Include="test_results_out\results_test3.txt" />
+    <Text Include="test_results_out\results_test4.txt" />
+    <Text Include="test_results_out\results_test5.txt" />
+    <Text Include="test_results_out\results_test6.txt" />
+    <Text Include="test_results_out\results_test7.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,0 +1,14 @@
+ERROR Formatting incorrect in Input file
+NO SOLUTION FOUND
+#level 2
+S...
+...v
+xxxx
+....
+#level 1
+XXXX
+....
+....
+O..R
+Test Case Finished in seconds:0
+Test Case execution in ticks:3

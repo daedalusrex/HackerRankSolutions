@@ -24,6 +24,7 @@
 #include <stdio.h>
 #include <assert.h>
 #include <filesystem>
+#include <time.h>
 
 #include "Map.h"
 
@@ -107,42 +108,87 @@ bool Solve_Map(Map& maze)
 
 int main(void) {
 
-	ifstream fin("input_tests/InSampleTest.txt");
+	ifstream fin;
+	ofstream fout;
 	size_t side_length;
 	size_t levels;
-	fin >> side_length;
-	fin >> levels;
+	//ifstream fin("input_tests/InSampleTest.txt");
+	//ofstream fout("test_results_out/OutputBasic.txt");
+	clock_t all_start = clock();
+	vector<bool> results;
 
-
-	ofstream fout("output_tests/OutputBasic.txt");
-
-	
-
-	//later directions on how to access multiple files (run all tests at once)
-	/*std::string path = "/path/to/directory";
-	for (const auto& entry : fs::directory_iterator(path))
-		std::cout << entry.path() << std::endl;*/
-
-	Map testmap(levels, side_length, side_length);
-	bool solved = false;
-
-	if (!testmap.initialize_from_input(fin))
-		fout << "Error in Input file";
-	else
-		solved = Solve_Map(testmap);
-
-	testmap.print_map_to_output(fout);
-	if (solved)
+	//how to access multiple files (run all tests at once)
+	std::string path = "input_tests";
+	for (const auto& entry : std::filesystem::directory_iterator(path))
 	{
-		fout << "SOLVED THE MAP" << endl;
+		clock_t testcase_start = clock();
+		std::cout << entry.path() << std::endl;
+		fin.open(entry.path());
+		//for a specific test
+		//fin.open("input_tests/test0.txt");
+		
+		fin >> side_length;
+		fin >> levels;
+		bool solved = false;
+		Map main_map(levels, side_length, side_length);
+		
+		//ofstream fout("output_tests/OutputBasic.txt");
+		string outfilename;
+		outfilename = entry.path().filename().string();
+		outfilename = "test_results_out/results_" + outfilename;
+		fout.open(outfilename);
+
+
+		if (!main_map.initialize_from_input(fin))
+			fout << "ERROR Formatting incorrect in Input file\n";
+		else
+			solved = Solve_Map(main_map);
+
+		if (solved)
+		{
+			main_map.print_map_to_output(fout);
+			fout << "SOLVED THE MAP\n" << endl;
+			
+		}
+		else
+		{
+			fout << "NO SOLUTION FOUND\n";
+			main_map.print_map_to_output(fout);
+		}
+		results.push_back(solved);
+
+		clock_t testcase_finish = clock();
+		fout << "Test Case Finished in seconds:" << (testcase_finish - testcase_start) / CLOCKS_PER_SEC << endl;
+		fout << "Test Case execution in ticks:" << (testcase_finish - testcase_start) << endl;
+
+		cout << "Test Case Finished in seconds:" << (testcase_finish - testcase_start) / CLOCKS_PER_SEC << endl;
+		cout << "Test Case execution in ticks:" << (testcase_finish - testcase_start) << endl;
+
+		fin.close();
+		fout.close();
+
 	}
 
-	Map copy(testmap);
+	clock_t all_done = clock();
 
-	//ofstream fout("output_tests/OutputBasic.txt");
-	
-	testmap.print_map_to_output(cout);
-	copy.print_map_to_output(cout);
-	
+	cout << "All test finished total time of " << (all_done - all_start) / CLOCKS_PER_SEC << endl;
+
+	cout << "\n\n\n*******RESULTS******\n\n\n" << endl;
+	int i = 0, passed = 0;
+	for (const auto& entry : std::filesystem::directory_iterator(path))
+	{
+		if (results[i])
+		{
+			cout << "PASSED : ";
+			passed++;
+		}
+		else 
+			cout << "FAILED : ";
+		
+		cout << "Test Filename:" << entry.path().filename() << endl;
+		i++;
+	}
+
+	cout << "\n\n\nFinal Tally\n\nPASSED: " << passed << "\nOut of :" << i + 1 << endl;
 	return 0;
 }

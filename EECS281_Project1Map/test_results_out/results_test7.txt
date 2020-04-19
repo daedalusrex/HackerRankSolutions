@@ -1,0 +1,15 @@
+#level 1
+XXXXXXXXXX
+XOwwwwwwwX
+X.......nX
+X.......nX
+X.......nX
+X.......nX
+X.......nX
+X.......nX
+X.......nX
+XXXXXXXXXX
+SOLVED THE MAP
+
+Test Case Finished in seconds:0
+Test Case execution in ticks:3

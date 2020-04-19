@@ -1,0 +1,76 @@
+#level 8
+O.......
+n.......
+n.......
+n.......
+n.......
+n.......
+n.......
+n.......
+#level 7
+........
+........
+........
+...swwww
+...sXX.n
+...s.X.n
+...s.X.n
+uwww.X.n
+#level 6
+eeeeeees
+.......s
+.......s
+.......s
+.......s
+.......s
+.......s
+.......u
+#level 5
+uwwwwwww
+.......n
+.......n
+.......n
+.......n
+.......n
+.......n
+.......n
+#level 4
+eeeeeees
+.......s
+.......s
+.......s
+.......s
+.......s
+.......s
+.......u
+#level 3
+uwwwwwww
+.......n
+.......n
+.......n
+.......n
+.......n
+.......n
+.......n
+#level 2
+eeeeeees
+.......s
+.......s
+.......s
+.......s
+.......s
+.......s
+.......u
+#level 1
+uwwwwww.
+......n.
+......n.
+......n.
+......n.
+......n.
+......n.
+......n.
+SOLVED THE MAP
+
+Test Case Finished in seconds:0
+Test Case execution in ticks:5

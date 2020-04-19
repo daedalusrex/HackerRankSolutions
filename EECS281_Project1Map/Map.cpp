@@ -32,7 +32,7 @@ bool Map::initialize_from_input(istream &input)
 	while (!input.eof())
 	{	//boundary checking
 		if (current + num_cols > total_map_size)
-			return false;
+			break;
 
 		//if comment is detected then skip to the next line
 		char nextchar = input.peek();
