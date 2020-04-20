@@ -12,4 +12,4 @@ XXXXXXXXXX
 SOLVED THE MAP
 
 Test Case Finished in seconds:0
-Test Case execution in ticks:2
+Test Case execution in ticks:1

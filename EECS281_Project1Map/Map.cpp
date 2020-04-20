@@ -7,7 +7,7 @@ Map::Map(size_t total_levels, size_t total_rows, size_t total_columns)
 	total_map_size(level_area_size * num_levels)
 {
 	flat_map = new char[total_map_size+1];
-	memset(flat_map, 'X', total_map_size);
+	memset(flat_map, '#', total_map_size);
 	//added one extra char to hold null character so it can also be a c string
 	flat_map[total_map_size] = '\0';
 }

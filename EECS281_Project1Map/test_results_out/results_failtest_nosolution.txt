@@ -1,17 +1,17 @@
 NO SOLUTION FOUND
 #level 2
-S.....
-......
-XXXXX.
-XXXXX.
-XXXXX.
-XXXXXv
+@@@@@@
+@@@@@@
+XXXXX@
+XXXXX@
+XXXXX@
+XXXXX@
 #level 1
-......
-.XXXX.
-.XO.X.
-.X..X.
-.XXXX.
-......
+@@@@@@
+@XXXX@
+@XO.X@
+@X..X@
+@XXXX@
+@@@@@@
 Test Case Finished in seconds:0
-Test Case execution in ticks:4
+Test Case execution in ticks:1

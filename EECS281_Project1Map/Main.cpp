@@ -30,8 +30,73 @@
 
 using namespace std;
 
-void create_test_map()
-{}
+#define MAX_DIMENSION 1000000
+#define CHANCE_DOWN 1
+#define CHANCE_UP 2
+
+bool create_random_map(size_t side_length, size_t num_levels, string filename, string comment, unsigned int percent_woods)
+{
+	if (percent_woods > 100 || side_length > MAX_DIMENSION || num_levels > MAX_DIMENSION)
+		return false;
+
+	ofstream genout(filename);
+	if (!genout.is_open())
+		return false;
+
+	genout << side_length << '\n' << num_levels << '\n';
+	genout << '#' << comment << endl;
+	genout << '#' << "percent of woods: " << percent_woods << endl;
+
+	Map testcase_map(num_levels, side_length, side_length);
+
+	srand(time(NULL));
+
+	for (size_t i = 0; i < testcase_map.get_map_size(); i++)
+	{
+		int chance = rand() % 100 + 1;
+		if (chance <= CHANCE_DOWN)
+			testcase_map.modify_cell(i, 'v');
+		else if (chance <= CHANCE_UP)
+			testcase_map.modify_cell(i, '^');
+		else if (chance <= percent_woods)
+			testcase_map.modify_cell(i, 'X');
+		else
+			testcase_map.modify_cell(i, '.');
+
+	}
+	
+	
+	testcase_map.modify_cell(0, 'S');
+	testcase_map.modify_cell(testcase_map.get_map_size()-1, 'O');
+
+#if 0
+	size_t position = 0;
+	if (testcase_map.get_map_size() > RAND_MAX)
+	{
+		position = rand() * (testcase_map.get_map_size() / RAND_MAX);
+		testcase_map.modify_cell(position, 'S');
+		position = rand() * (testcase_map.get_map_size() / RAND_MAX);
+		testcase_map.modify_cell(position, 'O');
+	}
+	else
+	{
+		position = rand() % testcase_map.get_map_size();
+		testcase_map.modify_cell(position, 'S');
+		position = rand() % testcase_map.get_map_size();
+		testcase_map.modify_cell(position, 'O');
+	}
+#endif
+
+	testcase_map.print_map_to_output(genout);
+
+	return true;
+}
+
+void mark_all_visited(Map& maze, bool* visited)
+{
+	for (size_t i = 0; i < maze.get_map_size(); i++)
+		(visited[i]) ? maze.modify_cell(i, '@') : NULL;
+}
 
 void modify_map_with_backtrace(Map& maze, size_t* parent_map)
 {
@@ -101,6 +166,9 @@ bool Solve_Map(Map& maze)
 
 	}
 
+	if (!solved)
+		mark_all_visited(maze, visited);
+
 	delete[] visited;
 	delete[] parent_map;
 	
@@ -123,7 +191,7 @@ int main(void) {
 	for (const auto& entry : std::filesystem::directory_iterator(path))
 	{
 		clock_t testcase_start = clock();
-		std::cout << entry.path() << std::endl;
+		std::cout << entry.path().filename().string() << "\n\n";
 		fin.open(entry.path());
 		//for a specific test
 		//fin.open("input_tests/test0.txt");
@@ -194,6 +262,12 @@ int main(void) {
 		i++;
 	}
 
-	cout << "\n\n\nFinal Tally\n\SUCCESS:  " << successfulresults << "\nTOTAL OF: " << i << endl;
+	cout << "\n\n\nFinal Tally\nSUCCESS:  " << successfulresults << "\nTOTAL OF: " << i << endl;
+
+	//Generating test case for next attempt:
+	/*if (create_random_map(1000, 32, "0_Real_Big_Test.txt", "Limits Testing ,Trees, far start and end", 33))
+		cout << "New Test Map Created Successfully!" << endl;*/
+
+
 	return 0;
 }

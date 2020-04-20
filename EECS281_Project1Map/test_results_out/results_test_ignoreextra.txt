@@ -19,4 +19,4 @@
 SOLVED THE MAP
 
 Test Case Finished in seconds:0
-Test Case execution in ticks:3
+Test Case execution in ticks:1
