@@ -40,52 +40,46 @@
     <Text Include="test_results_out\results_InSampleTest.txt">
       <Filter>Resource Files\OutputResults</Filter>
     </Text>
-    <Text Include="input_tests\test0.txt">
+    <Text Include="input_tests\test_comments.txt">
       <Filter>Resource Files\InputTestCases</Filter>
     </Text>
-    <Text Include="input_tests\test1.txt">
-      <Filter>Resource Files\InputTestCases</Filter>
-    </Text>
-    <Text Include="input_tests\test2.txt">
-      <Filter>Resource Files\InputTestCases</Filter>
-    </Text>
-    <Text Include="input_tests\test3.txt">
-      <Filter>Resource Files\InputTestCases</Filter>
-    </Text>
-    <Text Include="input_tests\test4.txt">
-      <Filter>Resource Files\InputTestCases</Filter>
-    </Text>
-    <Text Include="input_tests\test5.txt">
-      <Filter>Resource Files\InputTestCases</Filter>
-    </Text>
-    <Text Include="input_tests\test6.txt">
-      <Filter>Resource Files\InputTestCases</Filter>
-    </Text>
-    <Text Include="input_tests\test7.txt">
-      <Filter>Resource Files\InputTestCases</Filter>
-    </Text>
-    <Text Include="test_results_out\results_test0.txt">
+    <Text Include="test_results_out\results_test_comments.txt">
       <Filter>Resource Files\OutputResults</Filter>
     </Text>
-    <Text Include="test_results_out\results_test1.txt">
+    <Text Include="input_tests\test_ignoreextra.txt">
+      <Filter>Resource Files\InputTestCases</Filter>
+    </Text>
+    <Text Include="test_results_out\results_test_ignoreextra.txt">
       <Filter>Resource Files\OutputResults</Filter>
     </Text>
-    <Text Include="test_results_out\results_test2.txt">
+    <Text Include="input_tests\test_long.txt">
+      <Filter>Resource Files\InputTestCases</Filter>
+    </Text>
+    <Text Include="test_results_out\results_test_long.txt">
       <Filter>Resource Files\OutputResults</Filter>
     </Text>
-    <Text Include="test_results_out\results_test3.txt">
+    <Text Include="input_tests\simplest.txt">
+      <Filter>Resource Files\InputTestCases</Filter>
+    </Text>
+    <Text Include="test_results_out\results_simplest.txt">
       <Filter>Resource Files\OutputResults</Filter>
     </Text>
-    <Text Include="test_results_out\results_test4.txt">
+    <Text Include="input_tests\failtest_nosolution.txt">
+      <Filter>Resource Files\InputTestCases</Filter>
+    </Text>
+    <Text Include="input_tests\failtest_insufficient.txt">
+      <Filter>Resource Files\InputTestCases</Filter>
+    </Text>
+    <Text Include="input_tests\failtest_illegalchar.txt">
+      <Filter>Resource Files\InputTestCases</Filter>
+    </Text>
+    <Text Include="test_results_out\results_failtest_insufficient.txt">
       <Filter>Resource Files\OutputResults</Filter>
     </Text>
-    <Text Include="test_results_out\results_test5.txt">
+    <Text Include="test_results_out\results_failtest_nosolution.txt">
       <Filter>Resource Files\OutputResults</Filter>
     </Text>
-    <Text Include="test_results_out\results_test6.txt">
-      <Filter>Resource Files\OutputResults</Filter>
-    </Text>
-    <Text Include="test_results_out\results_test7.txt">
+    <Text Include="test_results_out\results_failtest_illegalchar.txt">
       <Filter>Resource Files\OutputResults</Filter>
     </Text>
   </ItemGroup>

@@ -1,21 +1,22 @@
-NO SOLUTION FOUND
 #level 3
+.^v..
 .....
 .....
-.....
-.....
-XXXXS
+swwww
+dXXXn
 #level 2
 XXXXO
-.....
+..een
 XXXXX
 XXXXX
-..v.^
+eed.^
 #level 1
 XXXXX
-.....
-.....
-.....
-.....
+..u..
+..n..
+..n..
+.^n..
+SOLVED THE MAP
+
 Test Case Finished in seconds:0
 Test Case execution in ticks:3

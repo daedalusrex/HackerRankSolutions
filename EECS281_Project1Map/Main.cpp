@@ -30,6 +30,9 @@
 
 using namespace std;
 
+void create_test_map()
+{}
+
 void modify_map_with_backtrace(Map& maze, size_t* parent_map)
 {
 	size_t next = maze.get_goal_index();
@@ -58,7 +61,6 @@ void modify_map_with_backtrace(Map& maze, size_t* parent_map)
 		parent = parent_map[parent];
 	}
 }
-
 
 bool Solve_Map(Map& maze)
 {
@@ -104,7 +106,6 @@ bool Solve_Map(Map& maze)
 	
 	return solved;
 }
-
 
 int main(void) {
 
@@ -171,24 +172,28 @@ int main(void) {
 
 	clock_t all_done = clock();
 
-	cout << "All test finished total time of " << (all_done - all_start) / CLOCKS_PER_SEC << endl;
+	cout << "All test finished total seconds of:" << (all_done - all_start) / CLOCKS_PER_SEC << endl;
+	cout << "All test execution in ticks of    :" << (all_done - all_start) << endl;
 
 	cout << "\n\n\n*******RESULTS******\n\n\n" << endl;
-	int i = 0, passed = 0;
+	int i = 0, successfulresults = 0;
 	for (const auto& entry : std::filesystem::directory_iterator(path))
 	{
 		if (results[i])
 		{
 			cout << "PASSED : ";
-			passed++;
+			successfulresults++;
 		}
 		else 
 			cout << "FAILED : ";
 		
 		cout << "Test Filename:" << entry.path().filename() << endl;
+
+		if (strstr(entry.path().filename().string().c_str(), "fail") && !results[i])
+			successfulresults++;
 		i++;
 	}
 
-	cout << "\n\n\nFinal Tally\n\nPASSED: " << passed << "\nOut of :" << i + 1 << endl;
+	cout << "\n\n\nFinal Tally\n\SUCCESS:  " << successfulresults << "\nTOTAL OF: " << i << endl;
 	return 0;
 }

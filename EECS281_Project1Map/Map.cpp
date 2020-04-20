@@ -28,13 +28,12 @@ Map::Map(const Map& old) : num_levels(old.num_levels), num_rows(old.num_rows),
 bool Map::initialize_from_input(istream &input)
 {
 	size_t current = 0;
-	
-	while (!input.eof())
-	{	//boundary checking
-		if (current + num_cols > total_map_size)
-			break;
 
-		//if comment is detected then skip to the next line
+	if (!input.good())
+		return false;
+	
+	while (!input.eof() && current < total_map_size)
+	{	//if comment is detected then skip to the next line
 		char nextchar = input.peek();
 		if (nextchar == '#' || nextchar == '\n')
 		{
@@ -53,13 +52,30 @@ bool Map::initialize_from_input(istream &input)
 		//cstring classic implementation
 		//this writes a null after the edge of memory, so addded an extra space for null termination
 		input.getline(flat_map + current, num_cols + 1);
+		//input.read(flat_map + current, num_cols);//simple read no null append
+
+		//Advance by the amount of characters read, should always be num_cols, overwrites null from getline
+		current += num_cols;
+
+		//number of chars is less that num_cols and newline (too small)
+		int smallbrain = input.gcount();
+		if (smallbrain < num_cols)
+			return false;
+
+		
 		//fail bit will be set if too many chars are read
 		if (input.fail())
-			return false;
-		//Advance by the amount of characters read, should always be num_cols plus newline if succeed above
-		current += input.gcount()-1;
+		{	
+			input.clear();
+			//Specs state to ignore the rest of the line
+			input.ignore(numeric_limits<streamsize>::max(), '\n');
+		}		
 	}
 	
+	//file did not provide enough information
+	if (input.eof() && current < (total_map_size-1))
+		return false;
+
 	//set start point
 	char* point = strchr(flat_map, 'S');
 	//Covers no start point fouund, or duplicates

@@ -73,4 +73,4 @@ uwwwwww.
 SOLVED THE MAP
 
 Test Case Finished in seconds:0
-Test Case execution in ticks:5
+Test Case execution in ticks:4

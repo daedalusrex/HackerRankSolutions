@@ -1,0 +1,22 @@
+#level 3
+.X.X.
+...s.
+..Ow.
+.....
+.....
+#level 2
+.....
+..eu.
+..n..
+..n..
+.....
+#level 1
+.....
+.es..
+..s..
+..u..
+.....
+SOLVED THE MAP
+
+Test Case Finished in seconds:0
+Test Case execution in ticks:3
