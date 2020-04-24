@@ -6,6 +6,7 @@
 #include <string>
 #include <sstream>
 #include <cstring>
+#include <fstream>
 using namespace std;
 
 
@@ -73,20 +74,22 @@ long answer_query(int x1, int y1, int z1, int x2, int y2, int z2)
 
 int main() {
 	//Handle input
+	ifstream fin("SampleTestCase.txt");
+
 	int T; 
-	cin >> T;
+	fin >> T;
 	for (int testc = 0; testc < T; testc++)
 	{
 		int M;
-		cin >> N >> M;
+		fin >> N >> M;
 		for (int M_entry = 0; M_entry < M; M_entry++)
 		{
 			string op;
-			cin >> op;
+			fin >> op;
 			if (op == "UPDATE")
 			{
 				int x, y, z, W;
-				cin >> x >> y >> z >> W; 
+				fin >> x >> y >> z >> W; 
 				x--; y--; z--;
 				update_entry(x, y, z, W);
 			}
@@ -94,7 +97,7 @@ int main() {
 			if (op == "QUERY")
 			{
 				int x1, y1, z1, x2, y2, z2;
-				cin >> x1 >> y1 >> z1 >> x2 >> y2 >> z2;
+				fin >> x1 >> y1 >> z1 >> x2 >> y2 >> z2;
 				x1--; y1--; z1--; x2--; y2--; z2--;
 				cout << answer_query(x1, y1, z1, x2, y2, z2) << endl;
 			}
