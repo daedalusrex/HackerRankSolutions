@@ -38,14 +38,36 @@ https://www.hackerrank.com/challenges/crush/problem?h_l=interview&playlist_slugs
 vector<string> split_string(string);
 
 // Complete the arrayManipulation function below.
-long arrayManipulation(int n, vector<vector<int>> queries) {
+unsigned long arrayManipulation(int n, vector<vector<int>> queries) {
 
+    if (n < 1)
+        return 0;
+
+    unsigned long maxvalue = 0;
+    unsigned long* arr = new unsigned long[n];
+    memset(arr, 0, n*sizeof(unsigned long));
+
+    for (int i = 0; i < queries.size(); i++)
+    {
+        unsigned int start_idx = queries[i][0]-1;
+        unsigned int end_idx = queries[i][1]-1;
+        unsigned long k_val = queries[i][2];
+
+        for (unsigned int arr_idx = start_idx; arr_idx <= end_idx; arr_idx++)
+        {
+            arr[arr_idx] += k_val;
+            if (arr[arr_idx] > maxvalue)
+                maxvalue = arr[arr_idx];
+        }
+
+    }
+    return maxvalue;
 
 }
 
 int main()
 {
-    ofstream fout(getenv("OUTPUT_PATH"));
+    ofstream fout("result.txt");
 
     string nm_temp;
     getline(cin, nm_temp);
@@ -67,7 +89,7 @@ int main()
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
     }
 
-    long result = arrayManipulation(n, queries);
+    unsigned long result = arrayManipulation(n, queries);
 
     fout << result << "\n";
 
