@@ -33,6 +33,10 @@ arrayManipulation has the following parameters:
 n - the number of elements in your array
 queries - a two dimensional array of queries where each queries[i] contains three integers, a, b, and k
 https://www.hackerrank.com/challenges/crush/problem?h_l=interview&playlist_slugs%5B%5D=interview-preparation-kit&playlist_slugs%5B%5D=arrays
+
+Better solution involves only keeping track of the "elevation change" as you climb through the array. 
+Then summing all of it gives you the height at any point
+
 */
 
 vector<string> split_string(string);
@@ -43,22 +47,32 @@ unsigned long arrayManipulation(int n, vector<vector<int>> queries) {
     if (n < 1)
         return 0;
 
-    unsigned long maxvalue = 0;
-    unsigned long* arr = new unsigned long[n];
-    memset(arr, 0, n*sizeof(unsigned long));
+    long maxvalue = 0;
+    long* arr = new long[n];
+    memset(arr, 0, n*sizeof(long));
 
     for (int i = 0; i < queries.size(); i++)
     {
         unsigned int start_idx = queries[i][0]-1;
         unsigned int end_idx = queries[i][1]-1;
-        unsigned long k_val = queries[i][2];
+        long summand = queries[i][2];
 
-        for (unsigned int arr_idx = start_idx; arr_idx <= end_idx; arr_idx++)
-        {
-            arr[arr_idx] += k_val;
-            if (arr[arr_idx] > maxvalue)
-                maxvalue = arr[arr_idx];
-        }
+        
+        arr[start_idx] += summand;
+        if (end_idx < (n - 1))
+            arr[end_idx + 1] -= summand;
+          
+
+    }
+
+    long climber = 0;
+    for (int arr_idx = 0; arr_idx < n; arr_idx++)
+    {
+        climber += arr[arr_idx];
+        arr[arr_idx] = climber;
+
+        if (climber > maxvalue)
+            maxvalue = climber;
 
     }
     return maxvalue;
