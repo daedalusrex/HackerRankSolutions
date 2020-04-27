@@ -1,3 +1,8 @@
+/*
+EECS 281 Project 1
+Post-Humous Optimization
+April 2020
+*/
 #pragma once
 
 #include <string>

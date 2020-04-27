@@ -1,3 +1,8 @@
+/*
+EECS 281 Project 1
+Post-Humous Optimization
+April 2020
+*/
 #include "Map.h"
 
 Map::Map(size_t total_levels, size_t total_rows, size_t total_columns)
