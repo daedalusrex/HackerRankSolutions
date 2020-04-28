@@ -7,11 +7,7 @@ May 2020
 
 #pragma once
 
-#include <string>
-#include <cstring>
 #include <iostream>
-
-
 
 struct map_coordinates
 {
@@ -25,7 +21,7 @@ struct map_coordinates
 
 class Map
 {
-private:
+protected:
 	const size_t num_levels;
 	const size_t num_cols;
 	const size_t num_rows;
@@ -36,7 +32,7 @@ private:
 
 	//flat array index of the starting position, first occurence of char 'S'
 	size_t start_point;
-	//flat array index of the starting position, first occurence of char 'O'
+	//flat array index of the starting position, first occurence of char 'G'
 	size_t goal_point;
 
 	//Map() {};

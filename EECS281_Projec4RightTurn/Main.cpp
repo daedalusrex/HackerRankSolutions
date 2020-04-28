@@ -17,13 +17,19 @@ May 2020
 #include <sstream>
 #include <iostream>
 
-
+#include "Algorithms_281_Proj4.h"
+#include "TurnCost_Map.h"
+#include "P1_Map_Fork.h"
 
 
 using namespace std;
 
 int main(void) {
 
+	Map test_old(10, 10, 10);
+	
+	TurnCost_Map test(10, 10, 10);
 
+	test.initialize_from_input(cin);
 
 }

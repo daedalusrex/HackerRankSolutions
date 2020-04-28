@@ -6,6 +6,8 @@ May 2020
 */
 
 #include "P1_Map_Fork.h"
+#include <string>
+#include <cstring>
 
 using namespace std;
 
@@ -67,7 +69,7 @@ bool Map::initialize_from_input(istream& input)
 		current += num_cols;
 
 		//number of chars is less that num_cols and newline (too small)
-		int smallbrain = input.gcount();
+		streamsize smallbrain = input.gcount();
 		if (smallbrain < num_cols)
 			return false;
 
@@ -93,9 +95,9 @@ bool Map::initialize_from_input(istream& input)
 	start_point = point - flat_map;
 
 	//set goal point
-	point = strchr(flat_map, 'O');
+	point = strchr(flat_map, 'G');
 	//Covers no start point fouund, or duplicates
-	if (point == NULL || point != strrchr(flat_map, 'O'))
+	if (point == NULL || point != strrchr(flat_map, 'G'))
 		return false;
 	goal_point = point - flat_map;
 
@@ -108,7 +110,7 @@ bool Map::initialize_from_input(istream& input)
 		{
 		case '.':
 		case 'X':
-		case 'O':
+		case 'G':
 		case 'S':
 		case '^':
 		case 'v':
@@ -242,7 +244,7 @@ bool Map::point_is_traversable(map_coordinates point)
 		switch (flat_map[get_index_from_coordinates(point)])
 		{
 		case '.':
-		case 'O':
+		case 'G':
 		case 'S':
 		case '^':
 		case 'v':
