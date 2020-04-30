@@ -1,0 +1,14 @@
+#level 1
+XXXXXXXX
+XppppppX
+XppXppXX
+XpXppp.X
+Xp.XXp.X
+XXXXpp.X
+Xppppp.X
+XXXXXXXX
+SOLVED THE MAP
+
+Best Coast to get to Goal: 2
+Test Case Finished in seconds:0
+Test Case execution in ticks:3

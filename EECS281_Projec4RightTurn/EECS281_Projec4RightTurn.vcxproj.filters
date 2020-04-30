@@ -21,10 +21,10 @@
     <ClCompile Include="P1_Map_Fork.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="TurnCost_Map.cpp">
+    <ClCompile Include="Algorithms_281_Proj4.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Algorithms_281_Proj4.cpp">
+    <ClCompile Include="Cost_Map.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -32,10 +32,10 @@
     <ClInclude Include="P1_Map_Fork.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="TurnCost_Map.h">
+    <ClInclude Include="Algorithms_281_Proj4.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Algorithms_281_Proj4.h">
+    <ClInclude Include="Cost_Map.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

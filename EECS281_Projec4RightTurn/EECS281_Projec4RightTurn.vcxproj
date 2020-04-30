@@ -88,6 +88,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -142,12 +143,12 @@
     <ClCompile Include="Algorithms_281_Proj4.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="P1_Map_Fork.cpp" />
-    <ClCompile Include="TurnCost_Map.cpp" />
+    <ClCompile Include="Cost_Map.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Algorithms_281_Proj4.h" />
     <ClInclude Include="P1_Map_Fork.h" />
-    <ClInclude Include="TurnCost_Map.h" />
+    <ClInclude Include="Cost_Map.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

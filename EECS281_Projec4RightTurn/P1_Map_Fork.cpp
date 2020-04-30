@@ -256,3 +256,22 @@ bool Map::point_is_traversable(map_coordinates point)
 	}
 	return false;
 }
+
+bool Map::point_is_traversable(size_t index)
+{
+	if (index > total_map_size)
+		return false;
+	
+	switch (flat_map[index])
+	{
+	case '.':
+	case 'G':
+	case 'S':
+	case '^':
+	case 'v':
+		return true;
+	case 'X':
+	default:
+		return false;
+	}
+}
