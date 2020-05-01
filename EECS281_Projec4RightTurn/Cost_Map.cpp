@@ -6,14 +6,17 @@ May 2020
 */
 #include "Cost_Map.h"
 #include <queue>
+#include <algorithm>
 
 using namespace std;
+
+bool not_max_pred(unsigned short test);
 
 Cost_Map::Cost_Map(size_t total_rows, size_t total_columns)
 	: Map(1,total_rows,total_columns)
 {	
-	cost_flat_map = new unsigned short[total_map_size];
-	memset(cost_flat_map, USHRT_MAX, sizeof(unsigned short)*total_map_size);
+	cost_flat_map = new Group_Pose_Costs[total_map_size];
+	//memset(cost_flat_map, USHRT_MAX, sizeof(unsigned short)*total_map_size);
 }
 
 Cost_Map::~Cost_Map()
@@ -21,7 +24,7 @@ Cost_Map::~Cost_Map()
 	delete[] cost_flat_map;
 }
 
-size_t Cost_Map::get_adjacent_cell_index_in_direction(Direction direction, size_t point)
+size_t Cost_Map::next_index_in_direction(Direction direction, size_t point)
 {
 	//represents failure to get an adjacent cell, will fail any index access function
 	size_t result_index = SIZE_MAX;
@@ -55,9 +58,9 @@ size_t Cost_Map::get_adjacent_cell_index_in_direction(Direction direction, size_
 	return result_index;
 }
 
-inline size_t Cost_Map::get_adjacent_cell_index_in_direction(Direction direction, map_coordinates point)
+inline size_t Cost_Map::next_index_in_direction(Direction direction, map_coordinates point)
 {
-	return get_adjacent_cell_index_in_direction(direction, get_index_from_coordinates(point));
+	return next_index_in_direction(direction, get_index_from_coordinates(point));
 }
 
 unsigned short Cost_Map::manhattan_distance_to_goal(size_t point)
@@ -65,6 +68,7 @@ unsigned short Cost_Map::manhattan_distance_to_goal(size_t point)
 	size_t distance = USHRT_MAX;
 	if (point_is_traversable(point))
 	{
+		//llabs(point / num_cols - goal_point / num_cols);
 		long long temp = (point / num_cols) - (goal_point / num_cols);
 		(temp < 0) ? temp *= -1 : NULL;
 		distance = temp;
@@ -84,7 +88,7 @@ inline unsigned short Cost_Map::manhattan_distance_to_goal(map_coordinates point
 
 bool Cost_Map::calculate_costs_dynamic_programing()
 {
-	//this is not good style, function needs to be refactored
+	//this is not good style, function needs to be refactored, more abstraction
 	vector<Direction> starting_directions;
 	starting_directions.push_back(Direction(N));
 	starting_directions.push_back(Direction(E));
@@ -94,47 +98,71 @@ bool Cost_Map::calculate_costs_dynamic_programing()
 
 	for (int i = 0; i < starting_directions.size(); i++)
 	{
-		queue<size_t> search; 
+		//represents points to check that can be reached in x turns
 		queue<size_t> next_turn_search;
-		Direction current_direction = starting_directions.at(i);
+		queue<size_t> search; 
+		Direction cur_dir = starting_directions.at(i);
 		search.push(start_point);
-		unsigned short current_turn_cost = 0;
-		cost_flat_map[start_point] = 0;
+		unsigned short cur_turn_cost = 0;
+		cost_flat_map[start_point].cost[cur_dir] = 0;
 
 		do
 		{
-			queue<size_t> empty;
-			next_turn_search = empty;
+			queue<size_t> reset;
+			next_turn_search = reset;
 			while (!search.empty())
 			{
 				size_t index = search.front();
-				(cost_flat_map[index] > current_turn_cost) ? cost_flat_map[index] = current_turn_cost : NULL;
 				search.pop();
 
-				size_t forward_index = get_adjacent_cell_index_in_direction(current_direction, index);
+				//if the currnetly searched node had a higher previous turn cost to get here, then overwrite with this
+				if (cost_flat_map[index].cost[cur_dir] > cur_turn_cost)
+					cost_flat_map[index].cost[cur_dir] = cur_turn_cost;
+				//previous is not updated, because it is done during the peek right part of the search
+
+				//search all cell that are in the same direction as this orientation 
+				Pose previous_pose(index, cur_dir);
+				size_t forward_index = next_index_in_direction(cur_dir, index);
 				while (point_is_traversable(forward_index))
 				{
-					//Forward cell is reachable, so it has same as current cost
-					(cost_flat_map[forward_index] > current_turn_cost) ? cost_flat_map[forward_index] = current_turn_cost : NULL;
+					//test if the turning right should add a new point to the next search round 
+					Direction right_turn = right_turn_relative(cur_dir);
+					size_t right_location = next_index_in_direction(right_turn, forward_index);
+					Pose peek_right(right_location, right_turn);
 
-					size_t look_right = get_adjacent_cell_index_in_direction(right_turn_relative(current_direction), forward_index);
-					if (point_is_traversable(look_right) && cost_flat_map[look_right] > current_turn_cost+1)
-						next_turn_search.push(look_right);//this is wrong, fix later, needs two queues..
+					if (point_is_traversable(peek_right.location)) {
+						if (cost_flat_map[peek_right.location].cost[peek_right.direction] > (cur_turn_cost + 1))
+						{
+							next_turn_search.push(peek_right.location);
+							cost_flat_map[peek_right.location].cost[peek_right.direction] = (cur_turn_cost + 1);
+							cost_flat_map[peek_right.location].previous_pose[peek_right.direction] = Pose(forward_index, cur_dir);
+						}
+					}
 
-					//look forward to continue this no cost check
-					forward_index = get_adjacent_cell_index_in_direction(current_direction, forward_index);
+
+					//Forward cell is reachable, so if has greater as current cost, update it with new path
+					if (cost_flat_map[forward_index].cost[cur_dir] > cur_turn_cost) {
+						cost_flat_map[forward_index].cost[cur_dir] = cur_turn_cost;
+						cost_flat_map[forward_index].previous_pose[cur_dir] = previous_pose;
+					}
+			
+
+					//look forward to continue to connect all cells that can be reached at no cost
+					previous_pose = Pose(forward_index, cur_dir);
+					forward_index = next_index_in_direction(cur_dir, forward_index);
 				}
 			}
 			search = next_turn_search;
-			current_direction = right_turn_relative(current_direction);
-			current_turn_cost++;
+			cur_dir = right_turn_relative(cur_dir);
+			cur_turn_cost++;
 		} while (!next_turn_search.empty());
 	}
 
 	mark_all_visited_cells();
 
 	//Solution found, there is some cost to get to the goal
-	if (cost_flat_map[goal_point] != USHRT_MAX)
+	//if (cost_flat_map[goal_point] != USHRT_MAX)
+	if(any_of(cost_flat_map[goal_point].cost, cost_flat_map[goal_point].cost+(NUM_DIRECTIONS),not_max_pred))
 		return true;
 
 	return false;
@@ -160,18 +188,34 @@ void Cost_Map::print_costmap_to_output(ostream& output)
 {	
 	for (size_t r = 0; r < num_rows; r++) {
 		for (size_t c = 0; c < num_cols; c++) {
-			output << cost_flat_map[get_index_from_coordinates(0, r, c)] << '\t';
+			//output << cost_flat_map[get_index_from_coordinates(0, r, c)] << '\t';
+			output << min_element(cost_flat_map[get_index_from_coordinates(0, r, c)].cost,
+				cost_flat_map[get_index_from_coordinates(0, r, c)].cost+NUM_DIRECTIONS);
 		}
 		output << "\n";
 	}
 }
 
+unsigned short Cost_Map::goal_turn_cost()
+{
+	return *min_element(cost_flat_map[goal_point].cost, cost_flat_map[goal_point].cost + NUM_DIRECTIONS);
+}
+
+bool not_max_pred(unsigned short test) {
+	return test != USHRT_MAX;
+}
+//wrong
 void Cost_Map::mark_all_visited_cells()
 {
 	for (size_t i = 0; i < total_map_size; i++)
 	{
-		if (cost_flat_map[i] != USHRT_MAX)
+		//if (cost_flat_map[0].cost[0] != USHRT_MAX)
+		if(any_of(cost_flat_map[i].cost, cost_flat_map[i].cost+NUM_DIRECTIONS, not_max_pred))	
 			flat_map[i] = 'p';
 	}
 }
 
+Group_Pose_Costs::Group_Pose_Costs()
+{
+	memset(cost, USHRT_MAX, NUM_DIRECTIONS * sizeof(unsigned short));
+}

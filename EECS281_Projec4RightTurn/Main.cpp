@@ -128,8 +128,8 @@ int main(void) {
 
 
 	//Generating test case for next attempt:
-	if (create_random_map(1000, 1000, "10000_Test.txt", "Limits Testing ,Trees, far start and end", 8))
-		cout << "New Test Map Created Successfully!" << endl;
+	/*if (create_random_map(1000, 1000, "10000_Test.txt", "Limits Testing ,Trees, far start and end", 8))
+		cout << "New Test Map Created Successfully!" << endl;*/
 
 
 	return 0;
