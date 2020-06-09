@@ -33,7 +33,7 @@ struct Group_Pose_Costs {
 class Cost_Map : public Map
 {
 private:
-	Group_Pose_Costs *cost_flat_map;
+	Group_Pose_Costs*  cost_flat_map;
 
 public:
 	Cost_Map(size_t total_rows, size_t total_columns);
@@ -53,5 +53,8 @@ public:
 	unsigned short goal_turn_cost();
 
 	void mark_all_visited_cells();
+
+	void reset_all_costs() {}
+	void calculate_optimial_solution_BnB() {}
 };
 
